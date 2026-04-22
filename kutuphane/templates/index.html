@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html class="light" lang="tr">
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Arşiv - Keşfet</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#1b1c1c",
+                        "surface-bright": "#fbf9f4",
+                        "surface-dim": "#dbdad5",
+                        "on-tertiary-fixed-variant": "#623d3c",
+                        "surface-container-highest": "#e4e2dd",
+                        "on-secondary-container": "#636262",
+                        "tertiary-fixed-dim": "#eebab8",
+                        "on-primary-fixed-variant": "#2f4d40",
+                        "on-surface": "#1b1c19",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#eae8e3",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#adcebd",
+                        "on-secondary-fixed-variant": "#464747",
+                        "secondary-fixed": "#e4e2e2",
+                        "on-tertiary-container": "#d9a6a4",
+                        "primary-container": "#2d4b3e",
+                        "on-primary-container": "#99baa9",
+                        "background": "#fbf9f4",
+                        "surface-variant": "#e4e2dd",
+                        "on-background": "#1b1c19",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c1c8c3",
+                        "primary": "#163428",
+                        "on-tertiary-fixed": "#301313",
+                        "surface-container": "#f0eee9",
+                        "on-surface-variant": "#424844",
+                        "tertiary-fixed": "#ffdad8",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "outline": "#727974",
+                        "inverse-on-surface": "#f2f1ec",
+                        "primary-fixed-dim": "#adcebd",
+                        "on-primary-fixed": "#012116",
+                        "secondary-container": "#e1dfdf",
+                        "surface-container-low": "#f5f3ee",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#462525",
+                        "surface": "#fbf9f4",
+                        "inverse-surface": "#30312e",
+                        "secondary-fixed-dim": "#c7c6c6",
+                        "surface-tint": "#466557",
+                        "primary-fixed": "#c8ead8",
+                        "tertiary-container": "#603b3a",
+                        "secondary": "#5e5e5e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .font-serif {
+            font-family: 'Newsreader', serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <!-- TopAppBar -->
+    <header
+        class="fixed top-0 w-full flex justify-between items-center px-6 py-4 bg-[#fbf9f4]/80 dark:bg-stone-950/80 backdrop-blur-xl z-50">
+        <button class="p-2 transition-colors hover:bg-stone-200/50 dark:hover:bg-stone-800/50 active:scale-95">
+            <span class="material-symbols-outlined text-[#163428] dark:text-emerald-500">menu</span>
+        </button>
+        <h1 class="font-serif italic text-2xl text-[#163428] dark:text-emerald-500">Arşiv</h1>
+        <button id="theme-toggle" class="p-2 transition-colors hover:bg-stone-200/50 dark:hover:bg-stone-800/50 active:scale-95 mr-2">
+            <span class="material-symbols-outlined text-[#163428] dark:text-emerald-500">dark_mode</span>
+        </button>
+        <div
+            class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-highest transition-colors active:scale-95 cursor-pointer">
+            <img alt="Kullanıcı Profili Avatarı" class="w-full h-full object-cover"
+                data-alt="close-up portrait of a thoughtful man in a library, warm soft lighting, academic aesthetic"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAslsGAohAOi8neivrlnYXOXzIq5WNP4BRHYKs2nlpX2u1764ruABjycWj_99xo6pC7g_v4GGcgUQ5Qpp5l5W_5MSihvq96oxW3LRmZ0PNpa3j-LLaYCOHiDyzEBy7Jmvpq4Mr-rvKg7xT-yMngVhdo_Y4YROxStsP81f6Cjc3SD-K5y-m_i1SMGo1mbl_mae2rsMwTHss_9gypdcG8juphNZnhEiqBb-2DBdmQizzOSC2L89lzSxQGiQrGJTWINZum-rmsbd4Ueg4" />
+        </div>
+    </header>
+    <main class="pt-24 pb-32">
+        <!-- Hero Section -->
+        <section class="px-6 mb-10">
+            <div class="max-w-4xl">
+                <h2 class="text-4xl md:text-5xl font-serif italic mb-2">İyi öğleden sonraları, Tuana.</h2>
+                <p class="text-on-surface-variant font-body mb-8 tracking-tight">Sığınağın seni bekliyor. Bugün neyi
+                    keşfedeceğiz?</p>
+                <!-- "Nook" Search Bar -->
+                <div class="relative group">
+                    <span
+                        class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline">search</span>
+                    <input
+                        class="w-full bg-surface-container-low border-none rounded-lg py-5 pl-12 pr-6 font-serif italic text-lg focus:ring-1 focus:ring-primary/20 transition-all placeholder:text-outline-variant"
+                        placeholder="Bir sonraki bölümünü bul..." type="text" />
+                </div>
+            </div>
+        </section>
+        <!-- Trending Now -->
+        <section class="mb-12">
+            <div class="flex justify-between items-end px-6 mb-6">
+                <div>
+                    <span
+                        class="text-[10px] uppercase tracking-[0.2em] font-body font-bold text-tertiary mb-1 block">NABIZ</span>
+                    <h3 class="text-2xl font-serif italic">Şu An Trend</h3>
+                </div>
+                <button class="text-sm font-body text-primary font-semibold hover:underline">Rafı Gör</button>
+            </div>
+            <div class="flex gap-6 overflow-x-auto hide-scrollbar px-6 snap-x">
+                <!-- Book Card 1 -->
+                <div class="snap-start flex-none w-[280px] group cursor-pointer">
+                    <div
+                        class="relative aspect-[3/4] mb-4 overflow-hidden rounded-lg bg-surface-container-high transition-transform duration-500 group-hover:-translate-y-2">
+                        <img alt="Kitap Kapağı 1" class="w-full h-full object-cover"
+                            data-alt="minimalist book cover with elegant typography on cream paper, moody lighting, soft shadows"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCshxckzbvxdqoShHAXrlri1e-Cz21kEAM-otVn6xbA_Pak4c4N00ctnsOz2FiUsPsrgXuFDpdU2ojjMMISphu59c0d2VV-pjZfoNg4YRzRRuoz1e5Q6ERFSGqLXXkGpjZnzHQl1FOQCg__werVbYZQ1i5-8k-_t_tAAagwbMRzollNhT91h4lc-hirJYibDw3KGNHnKrki64uxAxTmaLnMTXVNntl71PVgQcGxKEuL8IkMjuMmVql3f1iiyuOIRl6mGY3nc2Q6FY8" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                            <span class="text-white text-xs font-body tracking-widest uppercase">Şimdi Oku</span>
+                        </div>
+                    </div>
+                    <h4 class="font-serif text-xl mb-1 group-hover:text-tertiary transition-colors">Echoes of Silence
+                    </h4>
+                    <p class="text-xs font-body text-on-surface-variant tracking-wide">ELARA VANCE • 2024</p>
+                </div>
+                <!-- Book Card 2 -->
+                <div class="snap-start flex-none w-[280px] group cursor-pointer">
+                    <div
+                        class="relative aspect-[3/4] mb-4 overflow-hidden rounded-lg bg-surface-container-high transition-transform duration-500 group-hover:-translate-y-2">
+                        <img alt="Kitap Kapağı 2" class="w-full h-full object-cover"
+                            data-alt="vintage book cover with intricate gold foil patterns on dark green leather background"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqAhghvnRg2JFRXuXFBlZU4kgBSRZx2NPIgBLVnpDz4RFGMPyBncdbBNPOmKPTll3SyOSonhm_LDZ26TTuJt2jjhjFekXwyF-Eq-3oHXSD8oQEm45lbB5gT7MPhaZVvzLUYAAzsrulVxn3Bpw_EN-vib1fQtOLEboLemMZ7QUpC0whGJ6T_6TawDtycVUp-f38G72gUaYUWxlXTNPwl0p3qNYvKK8yhnn55EdfJhnwFNkkUfPDuc_ENhN2o9Fakh-R4p5QmiN8xcQ" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                            <span class="text-white text-xs font-body tracking-widest uppercase">Şimdi Oku</span>
+                        </div>
+                    </div>
+                    <h4 class="font-serif text-xl mb-1 group-hover:text-tertiary transition-colors">The Alchemist's
+                        Shadow</h4>
+                    <p class="text-xs font-body text-on-surface-variant tracking-wide">DR. MARCUS THORNE</p>
+                </div>
+                <!-- Book Card 3 -->
+                <div class="snap-start flex-none w-[280px] group cursor-pointer">
+                    <div
+                        class="relative aspect-[3/4] mb-4 overflow-hidden rounded-lg bg-surface-container-high transition-transform duration-500 group-hover:-translate-y-2">
+                        <img alt="Kitap Kapağı 3" class="w-full h-full object-cover"
+                            data-alt="modern abstract book cover with soft pastel gradients and minimalist serif font"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvf06WA91IpZWD2eXnoJTmef1XswYlj-xR-_hgWuo--QXlwQ05ZYayGhvch1_IGkOax3STd2Xq71DGmql03q8y32Z76Zq3eUAMnGR8huCvChOW_A6tYO-zNjxxp2SvZmFINysBaKk_8oSCJxFyvPYVX8t4EspU76gUxr1N0Lec02i4cKfcwZuaYqEjzch08dxaFdb4o9krNbu6JXaTjzuhT5eRjQBaUGHUvHGC7TTtith_u6SuUC5i1foR9JCfa1YEh4jy71pvOTY" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                            <span class="text-white text-xs font-body tracking-widest uppercase">Şimdi Oku</span>
+                        </div>
+                    </div>
+                    <h4 class="font-serif text-xl mb-1 group-hover:text-tertiary transition-colors">Veils of Reality
+                    </h4>
+                    <p class="text-xs font-body text-on-surface-variant tracking-wide">SARA JENKINS • 2023</p>
+                </div>
+            </div>
+        </section>
+        <!-- Recommended for You (Editorial Bento) -->
+        <section class="px-6 mb-12">
+            <div class="mb-6">
+                <span class="text-[10px] uppercase tracking-[0.2em] font-body font-bold text-tertiary mb-1 block">SİZİN
+                    İÇİN SEÇİLENLER</span>
+                <h3 class="text-2xl font-serif italic">Akademik Seçkiler</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-surface-container-low p-8 rounded-xl flex gap-8 items-center cursor-pointer group">
+                    <div
+                        class="w-32 h-44 flex-none overflow-hidden rounded shadow-2xl shadow-black/10 group-hover:scale-105 transition-transform">
+                        <img alt="Öneri 1" class="w-full h-full object-cover"
+                            data-alt="classic literature book cover design with subtle linen texture and elegant gold border"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwiCRCGO92dQfrVQ2eApemuXmf8toSUVESiysxufTIcTIipFWSxIa0sNIlAlxeLyMX4TJ0-4JD5LWf5akNLvyJQdhlik3w8Fj5faAgNA4Fibi3gJWdXYDtfw3lBbGNZlVp-MMLLLXo-p7cTw7t-W6Cw-Lb6G3l0j8nZrBLss3eLJSFdXxwWnkMYuRS3Tr-Vm9tYWnILHCH5nqfPaoQ-rRKJCUQb96kkR_SPeilXm5xh45TFCR_UoF34kZ33feHJRwDLOxzA2rDEiU" />
+                    </div>
+                    <div>
+                        <span
+                            class="bg-tertiary/10 text-tertiary text-[10px] font-bold px-2 py-1 rounded mb-4 inline-block tracking-wider uppercase">Personel
+                            Seçimi</span>
+                        <h4 class="text-2xl font-serif italic mb-2">A Midsummer Night</h4>
+                        <p class="text-sm font-body text-on-surface-variant line-clamp-3 mb-4">19. yüzyılın sonlarında
+                            insanlık durumunun ve rüyaların zamansız bir keşfi.</p>
+                        <button
+                            class="flex items-center gap-2 text-primary text-sm font-semibold group-hover:gap-4 transition-all">
+                            Rafa Ekle <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-surface-container-low p-8 rounded-xl flex gap-8 items-center cursor-pointer group">
+                    <div
+                        class="w-32 h-44 flex-none overflow-hidden rounded shadow-2xl shadow-black/10 group-hover:scale-105 transition-transform">
+                        <img alt="Öneri 2" class="w-full h-full object-cover"
+                            data-alt="artistic book cover with deep indigo watercolor wash and silver metallic lettering"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgB27Yn4db3aing0kGbteJ-nosNw0sHTvgakghYDtcpTfs50gahstZXRRTurZ6dBRvAC5nLGqPwg_wGU1Ps3eEjqleoEltCIk_02qmuIxfewzMbCPzfk8Qr7boYqosKTbzJr2wxLY-4Dh1jhsPrZljJbBIiDct47dIm4V77qtI7DDrmskcNu0TRpQzJT_KlxxUngidYcqJ5LrPQoEzQo5AbwZTbunw1g2GIeiwlmIQM36cvNUjwc2wmcEi8yQW6GL5TTR1Ve7_EUY" />
+                    </div>
+                    <div>
+                        <span
+                            class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-1 rounded mb-4 inline-block tracking-wider uppercase">Derin
+                            Dalış</span>
+                        <h4 class="text-2xl font-serif italic mb-2">The Silent Archive</h4>
+                        <p class="text-sm font-body text-on-surface-variant line-clamp-3 mb-4">İskenderiye
+                            Kütüphanesi'nin gizemlerini modern bir keşif merceğinden açığa çıkarıyor.</p>
+                        <button
+                            class="flex items-center gap-2 text-primary text-sm font-semibold group-hover:gap-4 transition-all">
+                            Rafa Ekle <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Popular Genres -->
+        <section class="mb-12">
+            <div class="px-6 mb-6">
+                <h3 class="text-2xl font-serif italic">Popüler Türler</h3>
+            </div>
+            <div class="flex gap-3 overflow-x-auto hide-scrollbar px-6">
+                <button
+                    class="px-6 py-4 bg-surface-container-highest rounded-full whitespace-nowrap font-body font-semibold hover:bg-primary hover:text-on-primary transition-all active:scale-95">Klasik
+                    Edebiyat</button>
+                <button
+                    class="px-6 py-4 bg-surface-container-highest rounded-full whitespace-nowrap font-body font-semibold hover:bg-primary hover:text-on-primary transition-all active:scale-95">Akademik
+                    Dergiler</button>
+                <button
+                    class="px-6 py-4 bg-surface-container-highest rounded-full whitespace-nowrap font-body font-semibold hover:bg-primary hover:text-on-primary transition-all active:scale-95">Felsefe</button>
+                <button
+                    class="px-6 py-4 bg-surface-container-highest rounded-full whitespace-nowrap font-body font-semibold hover:bg-primary hover:text-on-primary transition-all active:scale-95">Antik
+                    Tarih</button>
+                <button
+                    class="px-6 py-4 bg-surface-container-highest rounded-full whitespace-nowrap font-body font-semibold hover:bg-primary hover:text-on-primary transition-all active:scale-95">Bilim
+                    &amp; Doğa</button>
+            </div>
+        </section>
+    </main>
+    <!-- BottomNavBar -->
+    <nav
+        class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-3 pb-safe bg-[#fbf9f4]/90 dark:bg-stone-950/90 backdrop-blur-2xl z-50 border-t border-stone-200/20 shadow-[0_-4px_24px_rgba(0,0,0,0.04)]">
+        <!-- Discover (Active) -->
+        <a class="flex flex-col items-center justify-center text-[#163428] dark:text-emerald-400 after:content-[''] after:w-1 after:h-1 after:bg-[#163428] after:rounded-full after:mt-1 transform -translate-y-1 transition-all duration-300"
+            href="{{ url_for('index') }}">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+            <span class="font-sans text-[10px] uppercase tracking-widest mt-1">KEŞFET</span>
+        </a>
+        <!-- Search -->
+        <a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-600 hover:text-[#462525] dark:hover:text-red-400 transition-all"
+            href="{{ url_for('arama') }}">
+            <span class="material-symbols-outlined">search</span>
+            <span class="font-sans text-[10px] uppercase tracking-widest mt-1">ARA</span>
+        </a>
+        <!-- Library -->
+        <a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-600 hover:text-[#462525] dark:hover:text-red-400 transition-all"
+            href="{{ url_for('kitapligim') }}">
+            <span class="material-symbols-outlined">local_library</span>
+            <span class="font-sans text-[10px] uppercase tracking-widest mt-1">KİTAPLIK</span>
+        </a>
+        <!-- History -->
+        <a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-600 hover:text-[#462525] dark:hover:text-red-400 transition-all"
+            href="{{ url_for('gecmis') }}">
+            <span class="material-symbols-outlined">history_edu</span>
+            <span class="font-sans text-[10px] uppercase tracking-widest mt-1">GEÇMİŞ</span>
+        </a>
+    </nav>
+    <!-- Floating "Now Reading" Anchor -->
+    <div class="fixed bottom-24 right-6 left-6 md:left-auto md:w-96 z-40">
+        <div
+            class="bg-[#163428]/95 backdrop-blur-md p-4 rounded-xl flex items-center gap-4 shadow-2xl text-white transform hover:scale-[1.02] transition-all cursor-pointer group">
+            <div class="w-12 h-16 flex-none bg-surface-container-highest rounded overflow-hidden">
+                <img alt="Şu An Okunuyor" class="w-full h-full object-cover"
+                    data-alt="small book cover thumbnail with artistic design, soft focus"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp61ND6mztUd_BTL-MBsvr7MrIT3tq1PIuREB-YFKzE38K5gP_puVNxDecF7iqNcHsF7fSZPccp0lQBpjWJWr1jPDqRD59TqOZirgZ578JgKhqaGeOmdJ-b_zQfKTpm_ruk8Zrv7GF-7dgzSOs2mlKm_ORsfAGTEYi-ugGAlupYY_sG52PIu3FJUQV05GYezhwMF4a5jkeCO8hDbUxY9vRhS8p3SL64TVQdYtgOauzztkd1qSsAw6amhQWsuLamkse8_7T5OS3T4c" />
+            </div>
+            <div class="flex-grow">
+                <span class="text-[10px] uppercase tracking-widest font-bold text-on-primary-container">ŞU AN
+                    OKUNUYOR</span>
+                <h5 class="text-sm font-serif italic truncate">Echoes of Silence</h5>
+                <div class="w-full h-0.5 bg-white/20 mt-2 rounded-full overflow-hidden">
+                    <div class="bg-white h-full w-[65%]"></div>
+                </div>
+            </div>
+            <button
+                class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>

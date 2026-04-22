@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html class="light" lang="tr">
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Arşiv - Kitap Detayları</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#1b1c1c",
+                        "surface-bright": "#fbf9f4",
+                        "surface-dim": "#dbdad5",
+                        "on-tertiary-fixed-variant": "#623d3c",
+                        "surface-container-highest": "#e4e2dd",
+                        "on-secondary-container": "#636262",
+                        "tertiary-fixed-dim": "#eebab8",
+                        "on-primary-fixed-variant": "#2f4d40",
+                        "on-surface": "#1b1c19",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#eae8e3",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#adcebd",
+                        "on-secondary-fixed-variant": "#464747",
+                        "secondary-fixed": "#e4e2e2",
+                        "on-tertiary-container": "#d9a6a4",
+                        "primary-container": "#2d4b3e",
+                        "on-primary-container": "#99baa9",
+                        "background": "#fbf9f4",
+                        "surface-variant": "#e4e2dd",
+                        "on-background": "#1b1c19",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c1c8c3",
+                        "primary": "#163428",
+                        "on-tertiary-fixed": "#301313",
+                        "surface-container": "#f0eee9",
+                        "on-surface-variant": "#424844",
+                        "tertiary-fixed": "#ffdad8",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "outline": "#727974",
+                        "inverse-on-surface": "#f2f1ec",
+                        "primary-fixed-dim": "#adcebd",
+                        "on-primary-fixed": "#012116",
+                        "secondary-container": "#e1dfdf",
+                        "surface-container-low": "#f5f3ee",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#462525",
+                        "surface": "#fbf9f4",
+                        "inverse-surface": "#30312e",
+                        "secondary-fixed-dim": "#c7c6c6",
+                        "surface-tint": "#466557",
+                        "primary-fixed": "#c8ead8",
+                        "tertiary-container": "#603b3a",
+                        "secondary": "#5e5e5e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "label": ["Manrope", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #fbf9f4;
+            color: #1b1c19;
+        }
+
+        .font-serif {
+            font-family: 'Newsreader', serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+        }
+
+        .glass-nav {
+            backdrop-filter: blur(20px);
+        }
+
+        .book-shadow {
+            box-shadow: 20px 20px 60px #dbdad5, -20px -20px 60px #ffffff;
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background min-h-screen">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <!-- TopAppBar -->
+    <header
+        class="fixed top-0 w-full flex justify-between items-center px-6 py-4 bg-[#fbf9f4]/80 dark:bg-stone-950/80 backdrop-blur-xl z-50">
+        <div class="flex items-center gap-4">
+            <button
+                class="p-2 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 transition-colors rounded-full active:scale-95 duration-150 ease-in-out">
+                <span class="material-symbols-outlined text-[#163428] dark:text-emerald-500">arrow_back</span>
+            </button>
+        </div>
+        <h1 class="font-serif italic text-2xl text-[#163428] dark:text-emerald-500">Arşiv</h1>
+        <button
+            id="theme-toggle"
+            class="p-2 mr-2 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 transition-colors rounded-full active:scale-95 duration-150 ease-in-out flex items-center justify-center"
+            >
+            <span class="material-symbols-outlined text-[#163428] dark:text-emerald-500">dark_mode</span>
+        </button>
+        <div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant/20">
+            <img alt="User profile avatar" class="w-full h-full object-cover"
+                data-alt="Close-up portrait of a thoughtful man in glasses looking slightly away in soft natural indoor lighting"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHny1AHX5xlZC-zMBsBO1gmSjTPU2qfDTdmkk-7oECWFXOp-qxk8Z7B2LtAGHf8uRs0MpLAGkxT7vNnMtk6ihwmmhUjQqSvchnzh5PqmY1n1LTVS66ft3YMTn-vruOT7BSPgvYUAHarCGOJaRwBTUCgx_O8TdyP1m1_qm4rvDEUJuS9Hs_OhXSLFW72Ba-ykXQ9SReiqLDvEGKqJkmxCHuAVjKUmZrNs3WOFtpS_w3nWh98PHmPMS_1_DV3wcelW6ae59-jujkAbA" />
+        </div>
+    </header>
+    <main class="pt-24 pb-12 px-6 max-w-7xl mx-auto">
+        <!-- Hero Section: Asymmetric Layout -->
+        <section class="grid grid-cols-1 md:grid-cols-12 gap-12 items-start mb-20">
+            <!-- Book Cover Column -->
+            <div class="md:col-span-5 lg:col-span-4 relative group">
+                <div
+                    class="aspect-[2/3] w-full rounded-lg overflow-hidden book-shadow transform -rotate-2 group-hover:rotate-0 transition-transform duration-700">
+                    <img alt="Book Cover" class="w-full h-full object-cover"
+                        data-alt="Elegant vintage book cover with gold foil accents and deep emerald texture on a minimalist wooden shelf"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuABD07dQvOR4OOwCUojLSkjWaOGSE4LCR0F8HWGuR4DHXnyGnUaMb7vTAyIaCYgohnFi-xLHU2rgjhf-fQkCHb77iO25wwkk14FCr5nMIn3luVVuR3whFT2sIQ7jqXFo6cjSTvNXjrzVPLJTN5K71xCcUbxGqmOd4CDz2xlO_FONw0jJi4LKPnvkKPMZlLn0_XBvt_gdoFvAlmAVBvkm3DRlYoA_Viz7tDXd-02YO5IgGU9ofXjbv6Mdf-zBSh4qo1mEoL3E4bS2uc" />
+                </div>
+                <!-- Tertiary Accent Badge -->
+                <div
+                    class="absolute -top-4 -right-4 bg-tertiary text-on-tertiary px-4 py-2 font-label text-[10px] uppercase tracking-[0.2em] rounded-full shadow-lg">
+                    EDİTÖRÜN SEÇİMİ
+                </div>
+            </div>
+            <!-- Title & Quick Info Column -->
+            <div class="md:col-span-7 lg:col-span-8 pt-8">
+                <div class="mb-2 flex items-center gap-2">
+                    <span class="text-tertiary flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm"
+                            style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="font-label font-bold text-sm">4.9</span>
+                    </span>
+                    <span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+                    <span class="font-label text-xs text-on-surface-variant uppercase tracking-widest">Tarihi
+                        Kurgu</span>
+                </div>
+                <h2 class="font-serif text-5xl md:text-7xl text-primary leading-tight mb-4 italic">Simyacının
+                    <br />Gizli Günlüğü
+                </h2>
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-12 rounded-full overflow-hidden grayscale">
+                        <img alt="Author portrait" class="w-full h-full object-cover"
+                            data-alt="Moody black and white portrait of a senior author with a silver beard wearing a textured knit sweater"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUCEPXgwJZmX61lyD_r_DldhT6pRndppnDXHYqltOOz6LW2ZmHO9JtWxcaB2q-wXxpHTCUgoZIAm_5BSy_1OMjhef3GoGowNcAplVa2l5qfWJxKgh5qlNAWuweX-UnaIk5CrgvCYRWWyrLSgCU8B0lvVs5fVd0gIGI3i6UICdIjnmxL70BXLaAPwN2S4mvHfgtI03WUOwKcDY8pEVMbFsl9RqEiOfWtlhHjeb7Mal9wVbr_0hWG3v9e2Fo7xh3Z4-JWqUn0mh99V0" />
+                    </div>
+                    <div>
+                        <p class="font-serif italic text-lg text-on-surface">Dr. Alistair Thorne Tarafından</p>
+                        <p class="font-label text-xs text-on-surface-variant uppercase tracking-tighter">Yayın Yılı 1924
+                            · Oxford Arşivi</p>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-4 mb-12">
+                    <button
+                        class="bg-primary text-on-primary px-8 py-4 rounded-xl font-label font-bold flex items-center gap-3 transition-transform active:scale-95">
+                        <span class="material-symbols-outlined">auto_stories</span>
+                        Ödünç Al
+                    </button>
+                    <button
+                        class="bg-surface-container-highest text-on-surface px-8 py-4 rounded-xl font-label font-semibold flex items-center gap-3 transition-colors hover:bg-surface-container-high active:scale-95">
+                        <span class="material-symbols-outlined">bookmark_add</span>
+                        Listeme Ekle
+                    </button>
+                </div>
+                <!-- Stats Bento -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-surface-container-low p-6 rounded-xl">
+                        <p class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest mb-1">UZUNLUK
+                        </p>
+                        <p class="font-serif text-xl italic text-primary">412 Sayfa</p>
+                    </div>
+                    <div class="bg-surface-container-low p-6 rounded-xl">
+                        <p class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest mb-1">DİL</p>
+                        <p class="font-serif text-xl italic text-primary">Latince / İngilizce</p>
+                    </div>
+                    <div class="bg-surface-container-low p-6 rounded-xl">
+                        <p class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest mb-1">DURUM
+                        </p>
+                        <p class="font-serif text-xl italic text-primary">Mevcut</p>
+                    </div>
+                    <div class="bg-surface-container-low p-6 rounded-xl">
+                        <p class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest mb-1">FORMAT
+                        </p>
+                        <p class="font-serif text-xl italic text-primary">Ciltli Kitap</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Main Content: Summary & Author -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24">
+            <!-- Left Side: Long Description -->
+            <div class="lg:col-span-8">
+                <h3 class="font-serif text-3xl text-primary mb-8 border-b border-outline-variant/10 pb-4">Hikaye</h3>
+                <div class="space-y-6 text-on-surface-variant leading-relaxed text-lg font-body">
+                    <p>
+                        Venedik Kütüphanesi'nin tuzla kaplı mahzenlerinin derinliklerinde, çağının mantığına meydan
+                        okuyan bir el yazması bulundu. <span class="text-primary italic">Simyacının Gizli
+                            Günlüğü</span>, kimyasal formüllerden oluşan bir koleksiyondan daha fazlasıdır; insan
+                        ruhunun kurşun gibi ağır gerçekliği ruhsal altına dönüştürme arzusunun derinlemesine bir
+                        keşfidir.
+                    </p>
+                    <p>
+                        Dr. Thorne, antik botanik titreşimlerin incelenmesi yoluyla hücresel yenilenmenin sırrını
+                        keşfettiği varsayılan arşivci Üstad Elias'ın kayıp yıllarını titizlikle yeniden kurguluyor.
+                        Kitap, tarihsel gerçeklik ile Rönesans hermetiklerinin ruhani felsefesi arasında hassas bir doku
+                        örüyor.
+                    </p>
+                    <p>
+                        Okuyucular; dumanlı laboratuvarlar, ay ışığıyla aydınlanan botanik bahçeleri ve dünyanın en
+                        büyük sırrını bulan ancak insanlığın korunması uğruna onu gömmeyi seçen bir adamın içsel
+                        mücadelesi boyunca duyusal bir yolculuğa davet ediliyor.
+                    </p>
+                </div>
+                <!-- Tags -->
+                <div class="mt-12 flex flex-wrap gap-2">
+                    <span
+                        class="px-4 py-2 bg-surface-container-low text-on-surface-variant font-label text-xs rounded-full">#Felsefe</span>
+                    <span
+                        class="px-4 py-2 bg-surface-container-low text-on-surface-variant font-label text-xs rounded-full">#Rönesans</span>
+                    <span
+                        class="px-4 py-2 bg-surface-container-low text-on-surface-variant font-label text-xs rounded-full">#BotanikÇalışmalar</span>
+                    <span
+                        class="px-4 py-2 bg-surface-container-low text-on-surface-variant font-label text-xs rounded-full">#GizliTarih</span>
+                </div>
+            </div>
+            <!-- Right Side: Author Details Card -->
+            <div class="lg:col-span-4">
+                <div class="bg-surface-container-low p-8 rounded-2xl sticky top-28">
+                    <h4 class="font-serif text-2xl text-primary mb-6">Arşivci Hakkında</h4>
+                    <img alt="Author workspace" class="w-full aspect-video object-cover rounded-lg mb-6 grayscale"
+                        data-alt="Atmospheric study with a heavy oak desk, antique typewriter, stacks of old manuscripts, and warm lamp light"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCECS6ibHte-qQVJymDSHNJXoLp7TUVEedU6-EP4FEbB49mtv85YUVjtHkzgzOhKYlovQ0ISPieVjQnMysS_eNKDSM6yQWIgViuRDEI1MKvmonUee3qtnrkpruCooI0TQjyeQxlGhK9Vqq6XehcIv0721dljaKBqFyQA5YAhhCmctVLu0z3WA-XmtWzOk0qvaFhJIuntkSzPNw_62kaUMV9xK2XxXeOzYNl6QdY2Bvvy6LIdsclNkvXDUlthHAufY4Ycjl92Jy2JqM" />
+                    <p class="font-serif italic text-xl text-on-surface mb-2">Dr. Alistair Thorne</p>
+                    <p class="text-sm text-on-surface-variant font-body leading-relaxed mb-6">
+                        Kraliyet Edebiyat Topluluğu üyesi olan Dr. Thorne, kırk yılını Akdeniz'in "görülmeyen
+                        tarihlerini" belgelemeye adamıştır. Çalışmaları genellikle okült araştırmalar ile meşru
+                        arkeolojik bulgular arasındaki boşluğu doldurur.
+                    </p>
+                    <button
+                        class="w-full py-3 text-primary border border-primary/20 rounded-xl font-label text-sm font-bold hover:bg-primary hover:text-on-primary transition-all duration-300">
+                        Yazarın Bibliyografyasını Gör
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- User Reviews Section: Horizontal Scroll/Bento -->
+        <section class="mb-24">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h3 class="font-serif text-4xl text-primary mb-2">Yansımalar</h3>
+                    <p class="text-on-surface-variant font-label text-sm uppercase tracking-widest">KÜTÜPHANE
+                        ÇEVRESİNDEN PAYLAŞILAN DÜŞÜNCELER</p>
+                </div>
+                <div class="hidden md:flex gap-4">
+                    <button
+                        class="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center text-primary hover:bg-surface-container-highest transition-colors">
+                        <span class="material-symbols-outlined">chevron_left</span>
+                    </button>
+                    <button
+                        class="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center text-primary hover:bg-surface-container-highest transition-colors">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review Card 1 -->
+                <div class="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/5">
+                    <div class="flex items-center gap-1 text-tertiary mb-4">
+                        <span class="material-symbols-outlined text-sm"
+                            style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm"
+                            style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm"
+                            style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm"
+                            style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm"
+                            style="font-variation-settings: 'FILL' 1;">star</span>
+                    </div>
+                    <p class="font-serif italic text-lg text-primary mb-6">"Edebiyatın büyüleyici ve güzel bir parçası.
+                        Thorne, en kuru simyayı bile şiir gibi hissettirmenin bir yolunu buluyor."</p>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-[10px] font-bold text-on-primary-fixed">
+                            JB</div>
+                        <div>
+                            <p class="text-xs font-bold text-on-surface">Julian Barnes</p>
+                            <p class="text-[10px] text-on-surface-variant font-label uppercase tracking-tighter">Arşivci
+                                Seviye 4</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review Card 2 -->
+                <div class="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/5">
+                    <div class="flex items-center gap-1 text-tertiary mb-4">
+                        <span class="material-symbols-outlined text-sm"
+                            style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm"
+                            style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm"
+                            style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm"
+                            style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm">star</span>
+                    </div>
+                    <p class="font-serif italic text-lg text-primary mb-6">"Tempo oldukça dengeli, tıpkı tarif ettiği
+                        süreç gibi. Sabırlı okuyucuyu inanılmaz bir derinlikle ödüllendiriyor."</p>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center text-[10px] font-bold text-on-secondary-fixed">
+                            EM</div>
+                        <div>
+                            <p class="text-xs font-bold text-on-surface">Elena Moretti</p>
+                            <p class="text-[10px] text-on-surface-variant font-label uppercase tracking-tighter">
+                                Bilimsel Üye</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review Card 3 -->
+                <div class="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/5">
+                    <div class="flex items-center gap-1 text-tertiary mb-4">
+                        <span class="material-symbols-outlined text-sm"
+                            style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm"
+                            style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm"
+                            style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm"
+                            style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm"
+                            style="font-variation-settings: 'FILL' 1;">star</span>
+                    </div>
+                    <p class="font-serif italic text-lg text-primary mb-6">"Nadiren, sedir ağacından bir kutuda bir
+                        asırdır bekletilmiş gibi hissettiren modern bir kitap bulursunuz."</p>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center text-[10px] font-bold text-on-tertiary-fixed">
+                            TC</div>
+                        <div>
+                            <p class="text-xs font-bold text-on-surface">Thomas Crane</p>
+                            <p class="text-[10px] text-on-surface-variant font-label uppercase tracking-tighter">
+                                Koleksiyon Küratörü</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 text-center">
+                <button
+                    class="font-label text-xs uppercase tracking-[0.3em] text-primary border-b border-primary/40 pb-1 hover:border-primary transition-all">TÜM
+                    148 YORUMU OKU</button>
+            </div>
+        </section>
+        <!-- Suggested Reading / Footer Banner -->
+        <section class="bg-primary p-12 rounded-3xl text-surface-bright relative overflow-hidden">
+            <div class="relative z-10 max-w-2xl">
+                <h3 class="font-serif text-3xl mb-4 italic">Aramaya Devam Et...</h3>
+                <p class="font-body text-on-primary-container text-lg mb-8">Simya sanatlarını ilgi çekici bulduysanız,
+                    küratörlerimiz <span class="italic text-surface-bright underline underline-offset-4">Botanik
+                        Sırlar</span> koleksiyonunu keşfetmenizi öneriyor.</p>
+                <button
+                    class="bg-surface-bright text-primary px-8 py-3 rounded-full font-label text-sm font-bold active:scale-95 transition-transform">Koleksiyonu
+                    Keşfet</button>
+            </div>
+            <!-- Decorative image element -->
+            <div class="absolute top-0 right-0 h-full w-1/3 opacity-20 pointer-events-none">
+                <img alt="Botanical sketch" class="h-full w-full object-cover grayscale"
+                    data-alt="Detailed vintage botanical sketch of medicinal herbs on yellowed parchment with handwritten notes"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyBtOYwlLlMjpclEmTxzAS85R9Bhl-Q-BJ3mI9z_paV3hz6p-Y6FGT19Pvx6yBWTvPB8LZKLpW7yKzazOwj2G-LAVgEynw3gNGJU_T-gVUtLtCAa81BklKgJ52TjgIegTauX-e16cCRk_4ylZzAny4ocJR-gm6c3jA7NmOpgAV5u3tiJ19rtwPax2xOh2pWAxUAYA1nne2Pc-s31JiGQhJPNa0ldd2L9xyYaT_WrL-65Jtj6MEa2KFyZVdsblaNUahUfE3bChnP7o" />
+            </div>
+        </section>
+    </main>
+    <!-- Reading Progress Bar (Fixed Bottom) -->
+    <div class="fixed bottom-0 w-full h-1 bg-outline-variant/20 z-50">
+        <div class="h-full bg-primary" style="width: 65%;"></div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="light" lang="tr">
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#1b1c1c",
+                        "surface-bright": "#fbf9f4",
+                        "surface-dim": "#dbdad5",
+                        "on-tertiary-fixed-variant": "#623d3c",
+                        "surface-container-highest": "#e4e2dd",
+                        "on-secondary-container": "#636262",
+                        "tertiary-fixed-dim": "#eebab8",
+                        "on-primary-fixed-variant": "#2f4d40",
+                        "on-surface": "#1b1c19",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#eae8e3",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#adcebd",
+                        "on-secondary-fixed-variant": "#464747",
+                        "secondary-fixed": "#e4e2e2",
+                        "on-tertiary-container": "#d9a6a4",
+                        "primary-container": "#2d4b3e",
+                        "on-primary-container": "#99baa9",
+                        "background": "#fbf9f4",
+                        "surface-variant": "#e4e2dd",
+                        "on-background": "#1b1c19",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c1c8c3",
+                        "primary": "#163428",
+                        "on-tertiary-fixed": "#301313",
+                        "surface-container": "#f0eee9",
+                        "on-surface-variant": "#424844",
+                        "tertiary-fixed": "#ffdad8",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "outline": "#727974",
+                        "inverse-on-surface": "#f2f1ec",
+                        "primary-fixed-dim": "#adcebd",
+                        "on-primary-fixed": "#012116",
+                        "secondary-container": "#e1dfdf",
+                        "surface-container-low": "#f5f3ee",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#462525",
+                        "surface": "#fbf9f4",
+                        "inverse-surface": "#30312e",
+                        "secondary-fixed-dim": "#c7c6c6",
+                        "surface-tint": "#466557",
+                        "primary-fixed": "#c8ead8",
+                        "tertiary-container": "#603b3a",
+                        "secondary": "#5e5e5e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "label": ["Manrope", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #fbf9f4;
+        }
+
+        .serif-italic {
+            font-family: 'Newsreader', serif;
+            font-style: italic;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e4e2dd;
+            border-radius: 10px;
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background min-h-screen pb-24">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <!-- Top Navigation Anchor (Shared Component Mapping) -->
+    <header
+        class="fixed top-0 w-full flex justify-between items-center px-6 py-4 bg-[#fbf9f4]/80 dark:bg-stone-950/80 backdrop-blur-xl z-50">
+        <div class="flex items-center gap-4">
+            <button
+                class="material-symbols-outlined text-[#163428] dark:text-emerald-500 hover:bg-stone-200/50 p-2 rounded-full transition-colors"
+                data-icon="menu">menu</button>
+            <h1 class="font-serif italic text-2xl Newsreader text-[#163428] dark:text-emerald-500">Arşiv</h1>
+        </div>
+        <button
+            id="theme-toggle"
+            class="material-symbols-outlined text-[#163428] dark:text-emerald-500 hover:bg-stone-200/50 p-2 rounded-full transition-colors mr-2"
+            data-icon="dark_mode">dark_mode</button>
+        <div class="h-10 w-10 rounded-full overflow-hidden border border-outline-variant/30">
+            <img alt="Kullanıcı profil avatarı" class="w-full h-full object-cover"
+                data-alt="Close-up portrait of a thoughtful man in a library setting with soft bookshelf bokeh in the background"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBTPQxVA-ZHk5H6nH5kgSbYhnOs1s1camiesK2-8YIInJ7YbqN9mA_yIfdKURHDj1fe88k8e_VY6_ZjcyQd9lM3mDxfzCt_HhFELWQ7QnRT1RubygcKx3oDnb-_F7MzVb3oOpp6U5h-pkRRquo3xPV1YBW2Q6saOkm18zZBawEIfhqv0SY5rso__EHofcLu3CTyLQrPdEvpzQQebuAspSnQSKFKByL_gCMvls2CRALfkDJcZ_AoTfQVYjwy5weVDj3RPgIgAQVKFg" />
+        </div>
+    </header>
+    <main class="pt-24 px-6 max-w-5xl mx-auto">
+        <!-- Prominent Active Search Bar -->
+        <section class="mb-12">
+            <div class="relative group">
+                <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+                    <span class="material-symbols-outlined text-primary/60" data-icon="search">search</span>
+                </div>
+                <input autofocus=""
+                    class="w-full h-16 pl-12 pr-14 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 text-xl font-headline italic placeholder:text-outline-variant transition-all shadow-sm"
+                    placeholder="Bir sonraki bölümünü bul..." type="text" />
+                <button
+                    class="absolute inset-y-0 right-4 flex items-center text-primary hover:text-tertiary transition-colors">
+                    <span class="material-symbols-outlined p-2 bg-surface-container-highest rounded-lg"
+                        data-icon="tune">tune</span>
+                </button>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-2">
+                <span
+                    class="px-4 py-1.5 bg-surface-container-high text-on-surface-variant text-xs font-label uppercase tracking-widest rounded-full">Son:
+                    Nabokov</span>
+                <span
+                    class="px-4 py-1.5 bg-surface-container-high text-on-surface-variant text-xs font-label uppercase tracking-widest rounded-full">Son:
+                    Karanlık Akademi</span>
+                <span
+                    class="px-4 py-1.5 bg-surface-container-high text-on-surface-variant text-xs font-label uppercase tracking-widest rounded-full">Son:
+                    İlk Basımlar</span>
+            </div>
+        </section>
+        <!-- Popular Categories - Bento Grid Style -->
+        <section class="mb-16">
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <h2 class="text-4xl font-headline text-on-background">Küratör Koleksiyonları</h2>
+                    <p class="text-on-surface-variant font-body mt-1 italic">Sığınağın geniş olanaklarını disiplinlere
+                        göre keşfedin.</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <!-- Large Feature: Fiction -->
+                <div
+                    class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-xl bg-primary text-white h-80 md:h-auto">
+                    <img alt="Kurgu Kategorisi"
+                        class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+                        data-alt="Moody atmospheric shot of an open vintage book with dust motes dancing in a single beam of light in a dark room"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMZv-1_q3oK0-mfPL6MgdcoJ5LCIoiOP6NdGHINWmcCvaxPLEe0pXHuYcS01QiFLavvAlFYzMx7GfxLR1cQvJ4kZa8VTrBPpeLadDOuJ46PWczaG8CI1woo0Gf3jymDuP5PpQTgsXBBk45phC3PfYeakN3IixbAmVBJtHpB20UoFPkPfMSne0hZ8COE1aW5snlvqiz3hRVsyz0LKwZvtk_z5qtTOALkuv8MlSJGG9_jBEF8K9mZT8gsua2RqQPrmPlEDHRl1Siz8g" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent"></div>
+                    <div class="absolute bottom-0 p-8">
+                        <span
+                            class="inline-block px-3 py-1 bg-tertiary text-[10px] uppercase tracking-widest mb-4 rounded-sm">Temel</span>
+                        <h3 class="text-4xl font-headline italic">Kurgu</h3>
+                        <p class="text-sm font-body opacity-80 mt-2 max-w-xs">Dünyanın en iyi düzyazısı aracılığıyla
+                            hayali alemleri ve insani derinlikleri aşın.</p>
+                    </div>
+                </div>
+                <!-- History -->
+                <div class="relative group overflow-hidden rounded-xl bg-surface-container-highest h-64">
+                    <img alt="Tarih Kategorisi"
+                        class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:scale-110 transition-transform duration-500"
+                        data-alt="Close-up of weathered ancient parchment and an antique brass compass on a dark wood surface"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJ8EpTHotaIS-jKwD0Xq9UvwyfwY0Bh-DqgOVgippGf1NW2sSc6yRAa-1vwlcVuUpH9T47PEC4eg39qgR51A04fWP18tb6MmdtxIQGlGHb4Ig-P3Mi-04-rwlWYSWwmDW2AsFPPnweMYmoGEVmh0jLhUEIUU2eEAoSvXohuCz6wSm0yR3D0p0VlJiyunSV3s9tpmkDOSJNXBjeHrVNuxb48bT672Ye3edzZQIPlrHpWWbdgzcQIj3ePbTRg96etGBqJy1AKOAgC_w" />
+                    <div class="absolute inset-0 flex flex-col justify-end p-6">
+                        <h3 class="text-2xl font-headline text-primary">Tarih</h3>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="material-symbols-outlined text-sm" data-icon="history_edu">history_edu</span>
+                            <span class="text-xs font-label uppercase tracking-tighter">Zamanın günlükleri</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Science -->
+                <div class="relative group overflow-hidden rounded-xl bg-surface-container-highest h-64">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-surface-container-low to-surface-container-highest">
+                    </div>
+                    <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
+                        <span class="material-symbols-outlined text-4xl text-primary/40 mb-4"
+                            data-icon="science">science</span>
+                        <h3 class="text-2xl font-headline text-primary">Bilimler</h3>
+                        <p class="text-xs font-body text-on-surface-variant mt-2">Gözlem ve Teori</p>
+                    </div>
+                    <div class="absolute bottom-0 w-full h-1 bg-primary/20"></div>
+                </div>
+                <!-- Philosophy -->
+                <div class="relative group overflow-hidden rounded-xl bg-tertiary text-white h-64">
+                    <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
+                        <h3 class="text-2xl font-headline italic">Felsefe</h3>
+                        <p class="text-[10px] font-label uppercase tracking-widest mt-4 opacity-70">Hakikat Arayışı</p>
+                        <button
+                            class="mt-6 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all">
+                            <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Arts -->
+                <div class="relative group overflow-hidden rounded-xl bg-surface-container-highest h-64">
+                    <img alt="Sanat Kategorisi"
+                        class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-500"
+                        data-alt="Abstract painterly brushstrokes in shades of emerald green and deep umber on a textured canvas"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuB103MdjKkLWjRKHJwke6h5kB0RTvLYimKThmRoGJrXmy2BdKpkREHxcZYaaEOyXKMLwp12KrRFSam-MQEG7UoxOtEiu2HqOuOPqA3vg-WHDJML2ucikdn2k9CPTcqwKxdDG2ZSDBpW6lAG5nNEA7rjN1YGx06r_jbzG2sZ06gjfiqD3lPvOcJWbDJyRJnywC0nt4ryHCQJjiC1qlj2czMuoxXFrysxEILqjN_Hg5TVUR9-y9B12Tutx1eltlXXgb35WCKUQcXLIv4" />
+                    <div class="absolute bottom-0 p-6">
+                        <h3 class="text-2xl font-headline text-on-background">Güzel Sanatlar</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Advance Filtering (As a Contextual Sidebar/Drawer Mockup) -->
+        <section class="mb-12">
+            <div class="flex items-center gap-4 mb-6">
+                <span class="material-symbols-outlined text-primary" data-icon="filter_list">filter_list</span>
+                <h3 class="text-xl font-headline text-on-background">Arşive Göre Daralt</h3>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Availability Filter -->
+                <div class="p-4 rounded-lg bg-surface-container-low">
+                    <label
+                        class="block text-[10px] font-label uppercase tracking-widest text-outline mb-3">UYGUNLUK</label>
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-3 cursor-pointer group">
+                            <div
+                                class="w-5 h-5 rounded-sm border-2 border-primary/20 flex items-center justify-center group-hover:border-primary transition-colors">
+                                <div
+                                    class="w-2.5 h-2.5 bg-primary rounded-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                                </div>
+                            </div>
+                            <span class="text-sm font-body">Rafda</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer group">
+                            <div class="w-5 h-5 rounded-sm border-2 border-primary/20 flex items-center justify-center">
+                                <div class="w-2.5 h-2.5 bg-primary rounded-sm opacity-0"></div>
+                            </div>
+                            <span class="text-sm font-body text-on-surface-variant">Dijital Arşiv</span>
+                        </label>
+                    </div>
+                </div>
+                <!-- Language Filter -->
+                <div class="p-4 rounded-lg bg-surface-container-low">
+                    <label class="block text-[10px] font-label uppercase tracking-widest text-outline mb-3">DİL</label>
+                    <select class="w-full bg-transparent border-none text-sm font-body focus:ring-0 p-0 text-primary">
+                        <option>Tüm Diller</option>
+                        <option>İngilizce</option>
+                        <option>Fransızca (Orijinal)</option>
+                        <option>Latince Transkriptler</option>
+                    </select>
+                    <div class="mt-2 h-px bg-outline-variant/30"></div>
+                </div>
+                <!-- Year Filter -->
+                <div class="p-4 rounded-lg bg-surface-container-low">
+                    <label
+                        class="block text-[10px] font-label uppercase tracking-widest text-outline mb-3">DÖNEM</label>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-body">1850</span>
+                        <div class="flex-1 h-0.5 bg-outline-variant/30 relative">
+                            <div class="absolute h-full bg-primary left-1/4 right-0"></div>
+                            <div class="absolute -top-1.5 left-1/4 w-3 h-3 bg-primary rounded-full"></div>
+                            <div class="absolute -top-1.5 right-0 w-3 h-3 bg-primary rounded-full"></div>
+                        </div>
+                        <span class="text-xs font-body">2024</span>
+                    </div>
+                </div>
+                <!-- Format Filter -->
+                <div class="p-4 rounded-lg bg-surface-container-low">
+                    <label
+                        class="block text-[10px] font-label uppercase tracking-widest text-outline mb-3">FORMAT</label>
+                    <div class="flex flex-wrap gap-2">
+                        <button
+                            class="px-3 py-1 bg-surface-container-highest text-[10px] font-label uppercase rounded-sm border border-primary/10">Ciltli</button>
+                        <button
+                            class="px-3 py-1 bg-surface-container-low text-[10px] font-label uppercase rounded-sm border border-outline-variant/20">Folyo</button>
+                        <button
+                            class="px-3 py-1 bg-surface-container-low text-[10px] font-label uppercase rounded-sm border border-outline-variant/20">Parşömen</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Recommended Scholars (Section to fill bento rhythm) -->
+        <section class="mb-24">
+            <h3 class="text-2xl font-headline text-on-background mb-6">Arşiv Küratörleri</h3>
+            <div class="flex gap-4 overflow-x-auto pb-4 custom-scrollbar">
+                <div class="flex-shrink-0 w-48 p-4 bg-surface-container-lowest rounded-xl shadow-sm">
+                    <div class="w-12 h-12 rounded-full overflow-hidden mb-4">
+                        <img alt="Küratör" class="w-full h-full object-cover"
+                            data-alt="Portrait of a scholarly woman with glasses in front of a dark bookshelf, soft light"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPWwZimQp4cp9P-8EFQt6xt9AGigU80XLhW6hG1FqfZWswXLzRyxZx0LUco3Rzkjwc8ziz_28lrr2BT9RubSpj1xXDmiGTZpHsriyX1kJpsDoEunR_0f9iVGuKs0PilAEQfVQoaVh4cIajgrnrErthJG819us64Snit1meM4903Q-8UmehameSR7QLK5MGpjNPzRQ2bBbdp90MIGPWajHinJfaY0tVbPEfqT2LJe0oacmPQG44FiTBPCnZT-MHc_ioObQKFRMjER4" />
+                    </div>
+                    <h4 class="font-headline italic text-primary">Dr. Clara Vance</h4>
+                    <p class="text-[10px] font-label uppercase tracking-widest text-outline mt-1">Viktorya Dönemi</p>
+                </div>
+                <div class="flex-shrink-0 w-48 p-4 bg-surface-container-lowest rounded-xl shadow-sm">
+                    <div class="w-12 h-12 rounded-full overflow-hidden mb-4">
+                        <img alt="Küratör" class="w-full h-full object-cover"
+                            data-alt="Portrait of a distinguished man in a tweed jacket, library setting"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU-EyP36v_SXu9LK0ACukoxS4pFjznv1rw5edQ-ow31tY6JY4VvcytGhY5AwNBuH3eU36UkRtz7SQy1sdQLSdUVbPMsIpSFRvoPHpdG2fe2RhvUMKNp5XhYbzBwppjUTdniTkoR7czdL-FsvJbkEH2c3zTT-5JAhVW6FctEHIPYEcH5wu65cmbIVoEcNkNSVqLkHCpNcNQq3olcP7GUeTzlUwkFHXFN1rry2qMOp1Bcc-dRBeY7znIFitzm9CvgNiaELde9R4S15U" />
+                    </div>
+                    <h4 class="font-headline italic text-primary">Julian Barnes</h4>
+                    <p class="text-[10px] font-label uppercase tracking-widest text-outline mt-1">Modern Etik</p>
+                </div>
+                <div class="flex-shrink-0 w-48 p-4 bg-surface-container-lowest rounded-xl shadow-sm">
+                    <div class="w-12 h-12 rounded-full overflow-hidden mb-4">
+                        <img alt="Küratör" class="w-full h-full object-cover"
+                            data-alt="Portrait of a focused researcher in a sunlit archival room"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBS491XmXTAMa-AB9FBQGOYp1QIjt_OOpKqF9NVwSMPcO2Dz5LAO56BzbGqEFBnpyM6kVudfZsKCUsJatX54ERbyyPnguPGEZascOJYP73eV-W1Hp-6og_mx6sndRcfu5y0lqBZYEhvlLye8545Ae8fyQHUjMxkgXZPB7KE4gXol9Up8iz7k2oeZ2iBsjN0yy0WLwP69g6SNosTfxVIIcPqqZsLoHCu7Kums4i6s8rgTNcPXCFSit5rX0Zaz8c9R8ZxNo8Msgm_KKg" />
+                    </div>
+                    <h4 class="font-headline italic text-primary">Elena Rossi</h4>
+                    <p class="text-[10px] font-label uppercase tracking-widest text-outline mt-1">Rönesans Sanatı</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Navigation Shell (Shared Component Mapping) -->
+    <!-- BottomNavBar: Active state is "Search" -->
+    <nav
+        class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-3 pb-6 bg-[#fbf9f4]/90 dark:bg-stone-950/90 backdrop-blur-2xl z-50 border-t border-stone-200/20 dark:border-stone-800 shadow-[0_-4px_24px_rgba(0,0,0,0.04)]">
+        <a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-600 hover:text-[#462525] transition-all"
+            href="{{ url_for('index') }}">
+            <span class="material-symbols-outlined mb-1" data-icon="auto_stories">auto_stories</span>
+            <span class="font-sans text-[10px] uppercase tracking-widest Manrope">Keşfet</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-[#163428] transform -translate-y-1 after:content-[''] after:w-1 after:h-1 after:bg-[#163428] after:rounded-full after:mt-1"
+            href="{{ url_for('arama') }}">
+            <span class="material-symbols-outlined mb-1" data-icon="search">search</span>
+            <span class="font-sans text-[10px] uppercase tracking-widest Manrope font-bold">Arama</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-600 hover:text-[#462525] transition-all"
+            href="{{ url_for('kitapligim') }}">
+            <span class="material-symbols-outlined mb-1" data-icon="local_library">local_library</span>
+            <span class="font-sans text-[10px] uppercase tracking-widest Manrope">Kütüphane</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-600 hover:text-[#462525] transition-all"
+            href="{{ url_for('gecmis') }}">
+            <span class="material-symbols-outlined mb-1" data-icon="history_edu">history_edu</span>
+            <span class="font-sans text-[10px] uppercase tracking-widest Manrope">Geçmiş</span>
+        </a>
+    </nav>
+</body>
+
+</html>

@@ -1,0 +1,333 @@
+<html class="light" lang="tr">
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="bg-background text-on-background font-body min-h-screen flex flex-col">```html
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#1b1c1c",
+                        "surface-bright": "#fbf9f4",
+                        "surface-dim": "#dbdad5",
+                        "on-tertiary-fixed-variant": "#623d3c",
+                        "surface-container-highest": "#e4e2dd",
+                        "on-secondary-container": "#636262",
+                        "tertiary-fixed-dim": "#eebab8",
+                        "on-primary-fixed-variant": "#2f4d40",
+                        "on-surface": "#1b1c19",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#eae8e3",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#adcebd",
+                        "on-secondary-fixed-variant": "#464747",
+                        "secondary-fixed": "#e4e2e2",
+                        "on-tertiary-container": "#d9a6a4",
+                        "primary-container": "#2d4b3e",
+                        "on-primary-container": "#99baa9",
+                        "background": "#fbf9f4",
+                        "surface-variant": "#e4e2dd",
+                        "on-background": "#1b1c19",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c1c8c3",
+                        "primary": "#163428",
+                        "on-tertiary-fixed": "#301313",
+                        "surface-container": "#f0eee9",
+                        "on-surface-variant": "#424844",
+                        "tertiary-fixed": "#ffdad8",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "outline": "#727974",
+                        "inverse-on-surface": "#f2f1ec",
+                        "primary-fixed-dim": "#adcebd",
+                        "on-primary-fixed": "#012116",
+                        "secondary-container": "#e1dfdf",
+                        "surface-container-low": "#f5f3ee",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#462525",
+                        "surface": "#fbf9f4",
+                        "inverse-surface": "#30312e",
+                        "secondary-fixed-dim": "#c7c6c6",
+                        "surface-tint": "#466557",
+                        "primary-fixed": "#c8ead8",
+                        "tertiary-container": "#603b3a",
+                        "secondary": "#5e5e5e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "label": ["Manrope", "sans-serif"]
+                    }
+                },
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .tonal-transition {
+            transition: background-color 0.3s ease;
+        }
+
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+    <!-- TopAppBar -->
+    <header
+        class="fixed top-0 w-full flex justify-between items-center px-6 py-4 bg-[#fbf9f4]/80 dark:bg-stone-950/80 backdrop-blur-xl z-50 tonal-transition flex items-center">
+        <div class="flex items-center gap-4">
+            <button
+                class="material-symbols-outlined text-[#163428] dark:text-emerald-500 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 p-2 rounded-full transition-colors active:scale-95 duration-150 ease-in-out">
+                menu
+            </button>
+            <h1 class="font-serif italic text-2xl text-[#163428] dark:text-emerald-500 Newsreader">Arşiv</h1>
+        </div>
+        <button
+            id="theme-toggle"
+            class="material-symbols-outlined text-[#163428] dark:text-emerald-500 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 p-2 rounded-full transition-colors active:scale-95 duration-150 ease-in-out mr-2">
+            dark_mode
+        </button>
+        <div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant/20">
+            <img alt="Kullanıcı profil avatarı" class="w-full h-full object-cover"
+                data-alt="close-up portrait of a thoughtful man in a library with soft natural lighting and warm tones"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCShNnF7YVubocCXSoWjLjlDNrX7U8QTDKxxioHpHAs-JHFGYmnNWa6pVEFm6ff0E__71vzAMRo8S_WaOQiPFiote3vPIPpvnrWa75nsnQuf-45Iq3l1kgiyLq3GNpodhMuF-YqbNujwGkdyZ5DrytuKuU2SI4_P-liODdYt4MLoTewoX81rIS_d4V272ag9ywuY3p5pyo4Jpob9PRlHhJgueAaSyA8iHempdHNLTg8vudrdUcL1A4Kbwhrghfs8iO-9fIWFJJbKZs" />
+        </div>
+    </header>
+    <!-- Main Canvas -->
+    <main class="flex-1 mt-20 mb-24 px-6 max-w-5xl mx-auto w-full">
+        <!-- Page Header -->
+        <div class="mb-10">
+            <h2 class="font-headline italic text-4xl text-primary mb-2">Okuma Geçmişi</h2>
+            <p class="text-on-surface-variant text-sm font-label tracking-wide uppercase">AKADEMİK KOLEKSİYONUNUZU
+                YÖNETİN</p>
+        </div>
+        <!-- Tab System -->
+        <div class="flex gap-8 mb-8 border-b border-outline-variant/10">
+            <button class="pb-4 text-on-surface-variant hover:text-primary transition-colors font-medium relative">
+                Şu An Okunanlar
+                <span class="ml-2 text-xs bg-primary/10 px-2 py-0.5 rounded-full">3</span>
+            </button>
+            <button class="pb-4 text-primary font-bold border-b-2 border-primary relative">Geçmiş</button>
+            <button
+                class="pb-4 text-on-surface-variant hover:text-primary transition-colors font-medium">Favoriler</button>
+        </div>
+        <!-- Section: Currently Reading (Bento Style Layout) -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+            <!-- Featured Reading Card (Large Bento) -->
+            <div
+                class="md:col-span-8 group bg-surface-container-low rounded-xl overflow-hidden flex flex-col md:flex-row shadow-sm hover:shadow-md transition-shadow">
+                <div class="md:w-1/3 aspect-[3/4] overflow-hidden">
+                    <img alt="Kitap Kapağı"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        data-alt="high-quality book cover of a classic novel leaning against a dark wood bookshelf in soft lighting"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7HunjHIiHW9JnP3O5avif73rITDY0HqwEM0m0UXxr2b-JKwPev8_XxoDoIOh5UHsVaRQvPXLstSbZnTtHuV0iYvdhHbhBGSd-6SWacpcEoI3-VMAF6QFtb5arX0cELJD84FGdKuLQTJr3OyGRZeV-wk3r7yDZ9llzoCVU00a4JeSVcmbhF9p7MURnkfTEkbpZTbmO29DjSIjVJgHDsz7BYiTlU0VdTfrTmf8LyZE85vSdnpOGhu4dcPf2zmIW7aORrDimYzlYpTU" />
+                </div>
+                <div class="md:w-2/3 p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span
+                                class="text-[10px] font-label uppercase tracking-[0.2em] text-tertiary font-bold">Felsefe</span>
+                            <span class="text-xs text-error font-medium flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">alarm</span>
+                                Teslim tarihine 5 gün kaldı
+                            </span>
+                        </div>
+                        <h3 class="font-headline text-3xl mb-2 text-on-surface">Kendime Düşünceler</h3>
+                        <p class="font-body text-sm text-on-surface-variant mb-6 leading-relaxed">MS 161'den 180'e kadar
+                            Roma İmparatoru olan Marcus Aurelius'un kendi kendine notlarını ve Stoacı felsefe üzerine
+                            fikirlerini kaydettiği bir dizi kişisel yazı.</p>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-end">
+                            <span class="text-xs font-label text-on-surface-variant">%72 Tamamlandı</span>
+                            <span class="text-xs font-label text-primary font-bold">256 sayfanın 184'ü</span>
+                        </div>
+                        <div class="h-1 w-full bg-outline-variant/20 rounded-full overflow-hidden">
+                            <div class="h-full bg-primary rounded-full w-[72%]"></div>
+                        </div>
+                        <div class="pt-4">
+                            <button
+                                class="bg-primary text-on-primary px-6 py-2.5 rounded-xl text-sm font-semibold hover:opacity-90 transition-opacity active:scale-95 duration-150">
+                                Okumaya Devam Et
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Secondary Reading Cards (Vertical Stack) -->
+            <div class="md:col-span-4 flex flex-col gap-6">
+                <!-- Book Card 2 -->
+                <div class="bg-surface-container-lowest p-5 rounded-xl border-l-4 border-primary shadow-sm">
+                    <div class="flex gap-4">
+                        <div class="w-16 h-24 flex-shrink-0 rounded shadow-sm overflow-hidden">
+                            <img alt="Kitap Kapağı" class="w-full h-full object-cover"
+                                data-alt="vintage green book cover with elegant gold lettering on a white surface with shadows"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXW4w52gOwz2S1sSh_5ZsiexCWTkceqrQOS3XjsOLEJcjKdHicyeVU11wTRvdFw5qLOjVINdKhmk_SLqO7AofXW1FE9LwnLODDd33QZ1WU3nZB9ErPLXcYIPKej5wlRzUJyyLQim04kGj6XeR2neYxsxDz11IR7vGBaIsALIhvG8StdseFh0inXvby-mIP7ApqsZN-l08U3vPFhhGTl2B7BFfna9ly-_O0_80V2IOanrm1-J95yzqXFn-nTZz_vAvTJQ7asHc9Qow" />
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-headline text-lg leading-tight mb-1">Muhteşem Gatsby</h4>
+                            <p class="text-xs text-on-surface-variant mb-3">F. Scott Fitzgerald</p>
+                            <div class="h-0.5 w-full bg-outline-variant/20 rounded-full mb-1">
+                                <div class="h-full bg-primary w-[35%]"></div>
+                            </div>
+                            <span class="text-[10px] text-on-surface-variant font-label">%35 • Ödünç Alındı</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Book Card 3 -->
+                <div class="bg-surface-container-lowest p-5 rounded-xl border-l-4 border-tertiary shadow-sm">
+                    <div class="flex gap-4">
+                        <div class="w-16 h-24 flex-shrink-0 rounded shadow-sm overflow-hidden">
+                            <img alt="Kitap Kapağı" class="w-full h-full object-cover"
+                                data-alt="thick classic book with leather binding sitting on an antique wooden desk"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9FFz-bEgn8pZi3mrjoBAP7iVR2v3teccrkmDaIwXLdvOKAXAPWmOjgL1elxVvpZ98WcttD1AaK8WCZqah6_Kge_q--fAP4hoVUR8eicn6RHMM3GdAYzL_l-B7sBqkPpP65-9MAuU8ZuE-0TMhIZizRUV7M5nTgcuv4L2tJS65AOu6p9O1x-1F0U2I_izpKQVg6wibUrJa5TWSo4zKUl6Bi9mAbK5o-bGZ_Rx1BJxc3_g5iXv9c9BQ8qzLaCRQVByAPj2d8vGBoOE" />
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-headline text-lg leading-tight mb-1">Kayıp Zamanın İzinde</h4>
+                            <p class="text-xs text-on-surface-variant mb-3">Marcel Proust</p>
+                            <div class="h-0.5 w-full bg-outline-variant/20 rounded-full mb-1">
+                                <div class="h-full bg-primary w-[12%]"></div>
+                            </div>
+                            <span class="text-[10px] text-on-surface-variant font-label">%12 • Özel Raf</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add New Action -->
+                <button
+                    class="flex items-center justify-center gap-3 border-2 border-dashed border-outline-variant/40 p-6 rounded-xl text-on-surface-variant hover:border-primary hover:text-primary transition-all group">
+                    <span class="material-symbols-outlined group-hover:rotate-90 transition-transform">add_circle</span>
+                    <span class="font-semibold text-sm">Yeni Cilt Ekle</span>
+                </button>
+            </div>
+        </div>
+        <!-- History/Recent Section Title -->
+        <div class="mt-16 mb-8 flex justify-between items-end">
+            <div>
+                <h3 class="font-headline text-2xl text-on-surface">Son Arşivlenenler</h3>
+                <p class="text-sm text-on-surface-variant font-body">Bu sezon tamamladığınız kitaplar</p>
+            </div>
+            <button class="text-primary text-sm font-semibold hover:underline decoration-2 underline-offset-4">Tüm
+                Arşivi Gör</button>
+        </div>
+        <!-- Horizontal Shelf (Asymmetric) -->
+        <div class="flex gap-6 overflow-x-auto pb-8 scrollbar-hide -mx-6 px-6">
+            <div class="flex-shrink-0 w-48">
+                <div
+                    class="aspect-[2/3] bg-surface-container-highest rounded-lg mb-3 shadow-sm hover:-translate-y-1 transition-transform">
+                    <img alt="Kitap Kapağı" class="w-full h-full object-cover rounded-lg"
+                        data-alt="modern minimalist book cover with abstract blue shapes and clean serif typography"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrRXcwM87Uu8KSNnbkuDdi4nkKeT6SmXMuKANUEvyXJWOtF289RM7j5EsiiGxwYqxAh0WcZLRr_AdLrELPXMth-mQK1qELsJqgkUUEHpR6TdGYTeRyePWwz3nLzHDdx4ZizDknHacSZXn_Js6KpMbkCOptg88cRaZr15QO5qaMa8FPW40GotK4nij6FMKWVstNAV6drhyR6d7sxmjZtcMRpGlvpq153O5uhGZncNb5FXk2fSXpW4eUsmy92EVb8U9-NTA0aAB3zbQ" />
+                </div>
+                <p class="font-headline text-base leading-snug">Sessiz Hasta</p>
+                <p class="text-xs text-on-surface-variant mt-1">Alex Michaelides</p>
+                <div class="flex items-center gap-1 mt-2">
+                    <span class="material-symbols-outlined text-[12px] text-primary"
+                        style="font-variation-settings: 'FILL' 1;">star</span>
+                    <span class="text-[10px] font-bold text-primary uppercase">Tamamlandı</span>
+                </div>
+            </div>
+            <div class="flex-shrink-0 w-48">
+                <div
+                    class="aspect-[2/3] bg-surface-container-highest rounded-lg mb-3 shadow-sm hover:-translate-y-1 transition-transform">
+                    <img alt="Kitap Kapağı" class="w-full h-full object-cover rounded-lg"
+                        data-alt="classic literature book with an artistic illustration of a lighthouse on the cover"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFdArurZDvzb7EBY9uZ7Yk5m97MOgycsruhG1v2R6UivKf5Y8blQbU2TsEsj0B7T9JKcDF0GvnMQVGoo2IAGh3wSRWW_fCRSPqH43aBP8tKTkOPc8eqHKNdZF1aMLXeCr6yZCXrA31u45ZD7m0lp6ou_2WjclTmKegS63mS7ZhI7KUO4pNIo5Yzb099GirG221sKOYtfuqXDdmx_SW4rxLt5X0NmQ7ryxmCUCjgZsvzMJlH9Yjiz0XdEsCx69t_WINNwlmTt1klKs" />
+                </div>
+                <p class="font-headline text-base leading-snug">Deniz Feneri</p>
+                <p class="text-xs text-on-surface-variant mt-1">Virginia Woolf</p>
+                <div class="flex items-center gap-1 mt-2 text-on-surface-variant/60">
+                    <span class="material-symbols-outlined text-[12px]">check_circle</span>
+                    <span class="text-[10px] font-bold uppercase">ARŞİVLENDİ</span>
+                </div>
+            </div>
+            <div class="flex-shrink-0 w-48">
+                <div
+                    class="aspect-[2/3] bg-surface-container-highest rounded-lg mb-3 shadow-sm hover:-translate-y-1 transition-transform">
+                    <img alt="Kitap Kapağı" class="w-full h-full object-cover rounded-lg"
+                        data-alt="dark academic book cover with a gold embossed crest and aged paper texture"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI4_a9ImfUle0SjX_ahRXM5VhJRq7-44FLKMCS3ln6786l1fQIBfUSGt7RWCeBBBkxhJGb2eY0kU3RBQtMsY2H4DeFEWdeWNLh_PtfnlB4wsO3QwqwU-wYbm7wI21yRaGnK0lQbT-Dt_buAOWwqSfweCBhlvi-p7nvGxZc4cf0iQ18mJnVB4mB5zh_wb9AVzuIEs-9_M1ziFbdm51IRrUFeAWjnertHmMY-gkwfynMRjWSojQC6AX7MnLjIP_MtzlBRxigMyNRbxk" />
+                </div>
+                <p class="font-headline text-base leading-snug">Gizli Tarih</p>
+                <p class="text-xs text-on-surface-variant mt-1">Donna Tartt</p>
+                <div class="flex items-center gap-1 mt-2 text-on-surface-variant/60">
+                    <span class="material-symbols-outlined text-[12px]">check_circle</span>
+                    <span class="text-[10px] font-bold uppercase">ARŞİVLENDİ</span>
+                </div>
+            </div>
+            <div class="flex-shrink-0 w-48">
+                <div
+                    class="aspect-[2/3] bg-surface-container-highest rounded-lg mb-3 shadow-sm hover:-translate-y-1 transition-transform">
+                    <img alt="Kitap Kapağı" class="w-full h-full object-cover rounded-lg"
+                        data-alt="abstract artistic book cover with warm orange and red brushstrokes"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuByIamNtygEaOPxQTPTfFGgb1AdmvQyLyd9OcbzdI36I2GulS8z9dpMXuMQ1ZWvStHaXH-ensoRO4KseKs80pB1XJwcctSYu2XxW8xn9vrdk3m_20sUKWJiK1URmOVJB8hqJ0H50Nv6eU3rgoMW7_mxNC5Y42wJtW8KB36-RJrcdM0xJPXKnKNsoycPcaKP-u1hw1ZisFT8kpEGXWTa1uEuk5DmMJCPNk7r1a3qUTWrPNWFvHbZBfBlxonzhTpPvRFbVUbutjACznc" />
+                </div>
+                <p class="font-headline text-base leading-snug">Ben, Kirke</p>
+                <p class="text-xs text-on-surface-variant mt-1">Madeline Miller</p>
+                <div class="flex items-center gap-1 mt-2 text-on-surface-variant/60">
+                    <span class="material-symbols-outlined text-[12px]">check_circle</span>
+                    <span class="text-[10px] font-bold uppercase">ARŞİVLENDİ</span>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- BottomNavBar -->
+    <nav
+        class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-3 pb-safe bg-[#fbf9f4]/90 dark:bg-stone-950/90 backdrop-blur-2xl z-50 border-t border-stone-200/20 shadow-[0_-4px_24px_rgba(0,0,0,0.04)]">
+        <a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-600 hover:text-[#462525] dark:hover:text-red-400 transition-all group active:transform active:-translate-y-1 duration-300"
+            href="{{ url_for('index') }}">
+            <span class="material-symbols-outlined">auto_stories</span>
+            <span class="font-sans text-[10px] uppercase tracking-widest Manrope mt-1">Keşfet</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-600 hover:text-[#462525] dark:hover:text-red-400 transition-all group active:transform active:-translate-y-1 duration-300"
+            href="{{ url_for('arama') }}">
+            <span class="material-symbols-outlined">search</span>
+            <span class="font-sans text-[10px] uppercase tracking-widest Manrope mt-1">Arama</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-[#163428] dark:text-emerald-400 after:content-[''] after:w-1 after:h-1 after:bg-[#163428] after:rounded-full after:mt-1 active:transform active:-translate-y-1 duration-300"
+            href="{{ url_for('kitapligim') }}">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_library</span>
+            <span class="font-sans text-[10px] uppercase tracking-widest Manrope mt-1">Kitaplık</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-stone-400 dark:text-stone-600 hover:text-[#462525] dark:hover:text-red-400 transition-all group active:transform active:-translate-y-1 duration-300"
+            href="{{ url_for('gecmis') }}">
+            <span class="material-symbols-outlined">history_edu</span>
+            <span class="font-sans text-[10px] uppercase tracking-widest Manrope mt-1">Geçmiş</span>
+        </a>
+    </nav>
+
+    ```
+</body>
+
+</html>
