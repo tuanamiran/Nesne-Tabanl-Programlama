@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Uzman Profili - Randevu Sistemi</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#324669",
+                        "primary": "#006880",
+                        "primary-container": "#72d9fd",
+                        "inverse-surface": "#010f20",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#72d9fd",
+                        "tertiary-dim": "#405377",
+                        "on-surface-variant": "#426188",
+                        "error-dim": "#67040d",
+                        "on-tertiary": "#f8f8ff",
+                        "surface-container-high": "#dce9ff",
+                        "on-primary-container": "#004a5d",
+                        "on-secondary-fixed-variant": "#495f68",
+                        "error": "#a83836",
+                        "surface-container-low": "#eff4ff",
+                        "outline-variant": "#95b4e0",
+                        "surface-bright": "#f8f9ff",
+                        "on-primary-fixed": "#003543",
+                        "on-surface": "#0f3458",
+                        "on-tertiary-fixed-variant": "#3b4f73",
+                        "surface-dim": "#c4dcff",
+                        "on-secondary": "#f1faff",
+                        "on-tertiary-fixed": "#1e3254",
+                        "primary-dim": "#005b71",
+                        "surface": "#f8f9ff",
+                        "on-error": "#fff7f6",
+                        "surface-tint": "#006880",
+                        "on-secondary-fixed": "#2d424b",
+                        "surface-container": "#e6eeff",
+                        "secondary-container": "#cfe6f1",
+                        "secondary-dim": "#41565f",
+                        "tertiary": "#4c5f84",
+                        "inverse-primary": "#72d9fd",
+                        "secondary-fixed": "#cfe6f1",
+                        "tertiary-container": "#bbcffa",
+                        "tertiary-fixed-dim": "#adc1eb",
+                        "on-background": "#0f3458",
+                        "surface-variant": "#d3e4ff",
+                        "surface-container-highest": "#d3e4ff",
+                        "background": "#f8f9ff",
+                        "inverse-on-surface": "#8f9eb4",
+                        "on-primary-fixed-variant": "#005469",
+                        "secondary": "#4d626b",
+                        "on-error-container": "#6e0a12",
+                        "error-container": "#fa746f",
+                        "primary-fixed-dim": "#63cbee",
+                        "tertiary-fixed": "#bbcffa",
+                        "on-primary": "#f1faff",
+                        "secondary-fixed-dim": "#c1d8e2",
+                        "on-secondary-container": "#3f555e",
+                        "outline": "#5e7da5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f8f9ff]/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-sm shadow-[#0f3458]/5">
+<div class="flex justify-between items-center px-6 py-4 w-full">
+<a href="{{ url_for('index') }}" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#eff4ff] transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[#006880]">arrow_back</span>
+</a>
+<h1 class="font-['Manrope'] font-bold tracking-tight text-[#0f3458] text-lg">Uzman Profili</h1>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#eff4ff] transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[#006880]">share</span>
+</button>
+</div>
+</header>
+<main class="pt-20 pb-32 px-6 max-w-2xl mx-auto space-y-8">
+<!-- Hero Section: Expert Identity -->
+<section class="flex flex-col md:flex-row items-center gap-6">
+<div class="relative">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden shadow-lg shadow-on-surface/10 ring-4 ring-white">
+<img class="w-full h-full object-cover" data-alt="Professional portrait" src="{{ doktor.fotograf }}"/>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-primary text-on-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-md">
+                    Onaylı
+                </div>
+</div>
+<div class="text-center md:text-left space-y-2">
+<h2 class="text-3xl font-headline font-extrabold tracking-tight text-on-surface">{{ doktor.ad }}</h2>
+<div class="flex items-center justify-center md:justify-start gap-2 text-on-surface-variant font-medium">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+<span>{{ doktor.uzmanlik }}</span>
+</div>
+<div class="flex items-center justify-center md:justify-start gap-3 pt-1">
+<div class="flex items-center bg-surface-container-high px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="ml-1 text-sm font-bold text-on-surface">{{ doktor.puan }}</span>
+</div>
+<span class="text-sm text-on-surface-variant">({{ doktor.inceleme_sayisi }}+ Değerlendirme)</span>
+</div>
+</div>
+</section>
+<!-- Stats Chips Row -->
+<div class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
+<div class="bg-surface-container-low flex-shrink-0 px-5 py-3 rounded-xl border border-outline-variant/15">
+<p class="text-[10px] uppercase tracking-wider text-on-surface-variant font-bold">Tecrübe</p>
+<p class="text-on-surface font-headline font-bold">{{ doktor.tecrube }}</p>
+</div>
+<div class="bg-surface-container-low flex-shrink-0 px-5 py-3 rounded-xl border border-outline-variant/15">
+<p class="text-[10px] uppercase tracking-wider text-on-surface-variant font-bold">Hastalar</p>
+<p class="text-on-surface font-headline font-bold">{{ doktor.hasta_sayisi }}</p>
+</div>
+<div class="bg-surface-container-low flex-shrink-0 px-5 py-3 rounded-xl border border-outline-variant/15">
+<p class="text-[10px] uppercase tracking-wider text-on-surface-variant font-bold">Diller</p>
+<p class="text-on-surface font-headline font-bold">{{ doktor.diller }}</p>
+</div>
+</div>
+<!-- Bio Section -->
+<section class="space-y-3">
+<h3 class="text-xl font-headline font-bold text-on-surface">Hakkında</h3>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm shadow-on-surface/5">
+<p class="text-on-surface-variant leading-relaxed text-sm">
+                    {{ doktor.biyografi }}
+                </p>
+</div>
+</section>
+<!-- Services Grid -->
+<section class="space-y-4">
+<div class="flex justify-between items-center">
+<h3 class="text-xl font-headline font-bold text-on-surface">Hizmetler</h3>
+<span class="text-primary text-xs font-bold uppercase tracking-widest">4 Seçenek</span>
+</div>
+<div class="space-y-3">
+<!-- Service Item 1 -->
+<div class="group bg-surface-container-lowest hover:bg-surface-container-low p-5 rounded-xl transition-colors duration-300 flex justify-between items-center shadow-sm shadow-on-surface/5">
+<div class="space-y-1">
+<h4 class="font-bold text-on-surface">İlk Danışmanlık</h4>
+<div class="flex items-center gap-2 text-on-surface-variant text-xs">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span>45 dk</span>
+</div>
+</div>
+<div class="text-right">
+<div class="text-lg font-headline font-extrabold text-primary">{{ doktor.fiyat }} ₺</div>
+<button class="text-xs font-bold text-primary-dim uppercase tracking-wider mt-1 opacity-0 group-hover:opacity-100 transition-opacity">Seç</button>
+</div>
+</div>
+<!-- Service Item 2 -->
+<div class="group bg-surface-container-lowest hover:bg-surface-container-low p-5 rounded-xl transition-colors duration-300 flex justify-between items-center shadow-sm shadow-on-surface/5">
+<div class="space-y-1">
+<h4 class="font-bold text-on-surface">Kontrol Görüşmesi</h4>
+<div class="flex items-center gap-2 text-on-surface-variant text-xs">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span>30 dk</span>
+</div>
+</div>
+<div class="text-right">
+<div class="text-lg font-headline font-extrabold text-primary">{{ (doktor.fiyat * 0.6)|int }} ₺</div>
+<button class="text-xs font-bold text-primary-dim uppercase tracking-wider mt-1 opacity-0 group-hover:opacity-100 transition-opacity">Seç</button>
+</div>
+</div>
+<!-- Service Item 3 -->
+<div class="group bg-surface-container-lowest hover:bg-surface-container-low p-5 rounded-xl transition-colors duration-300 flex justify-between items-center shadow-sm shadow-on-surface/5">
+<div class="space-y-1">
+<h4 class="font-bold text-on-surface">Detaylı Analiz</h4>
+<div class="flex items-center gap-2 text-on-surface-variant text-xs">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span>60 dk</span>
+</div>
+</div>
+<div class="text-right">
+<div class="text-lg font-headline font-extrabold text-primary">{{ (doktor.fiyat * 1.5)|int }} ₺</div>
+<button class="text-xs font-bold text-primary-dim uppercase tracking-wider mt-1 opacity-0 group-hover:opacity-100 transition-opacity">Seç</button>
+</div>
+</div>
+<!-- Service Item 4 -->
+<div class="group bg-surface-container-lowest hover:bg-surface-container-low p-5 rounded-xl transition-colors duration-300 flex justify-between items-center shadow-sm shadow-on-surface/5">
+<div class="space-y-1">
+<h4 class="font-bold text-on-surface">Reçete Yenileme</h4>
+<div class="flex items-center gap-2 text-on-surface-variant text-xs">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span>15 dk</span>
+</div>
+</div>
+<div class="text-right">
+<div class="text-lg font-headline font-extrabold text-primary">{{ (doktor.fiyat * 0.3)|int }} ₺</div>
+<button class="text-xs font-bold text-primary-dim uppercase tracking-wider mt-1 opacity-0 group-hover:opacity-100 transition-opacity">Seç</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Availability Preview (Asymmetric Pattern) -->
+<section class="bg-primary text-on-primary rounded-2xl p-6 relative overflow-hidden">
+<div class="relative z-10 space-y-4">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<h3 class="text-lg font-headline font-bold">En Yakın Randevu</h3>
+<p class="text-primary-container text-sm font-medium">Yarın için uygun</p>
+</div>
+<span class="material-symbols-outlined text-3xl opacity-50">calendar_month</span>
+</div>
+<div class="flex gap-2">
+<div class="bg-primary-dim text-on-primary px-4 py-2 rounded-lg text-sm font-bold border border-white/10">09:30</div>
+<div class="bg-primary-dim text-on-primary px-4 py-2 rounded-lg text-sm font-bold border border-white/10">11:00</div>
+<div class="bg-primary-dim text-on-primary px-4 py-2 rounded-lg text-sm font-bold border border-white/10">14:30</div>
+</div>
+</div>
+<!-- Decorative circle for asymmetry -->
+<div class="absolute -bottom-10 -right-10 w-40 h-40 bg-primary-container/20 rounded-full blur-3xl"></div>
+</section>
+</main>
+<!-- Bottom Action Bar -->
+<div class="fixed bottom-0 left-0 w-full bg-[#f8f9ff]/80 backdrop-blur-xl px-6 pb-8 pt-4 z-50">
+<div class="max-w-2xl mx-auto">
+<a href="{{ url_for('zaman_secimi', doktor_id=doktor.id) }}" class="w-full h-14 bg-gradient-to-br from-[#006880] to-[#72d9fd] text-white rounded-full font-headline font-extrabold tracking-tight text-lg shadow-[0_8px_30px_rgba(0,104,128,0.2)] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-3">
+                Randevu Al
+                <span class="material-symbols-outlined">chevron_right</span>
+</a>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#324669",
+                    "primary": "#006880",
+                    "primary-container": "#72d9fd",
+                    "inverse-surface": "#010f20",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#72d9fd",
+                    "tertiary-dim": "#405377",
+                    "on-surface-variant": "#426188",
+                    "error-dim": "#67040d",
+                    "on-tertiary": "#f8f8ff",
+                    "surface-container-high": "#dce9ff",
+                    "on-primary-container": "#004a5d",
+                    "on-secondary-fixed-variant": "#495f68",
+                    "error": "#a83836",
+                    "surface-container-low": "#eff4ff",
+                    "outline-variant": "#95b4e0",
+                    "surface-bright": "#f8f9ff",
+                    "on-primary-fixed": "#003543",
+                    "on-surface": "#0f3458",
+                    "on-tertiary-fixed-variant": "#3b4f73",
+                    "surface-dim": "#c4dcff",
+                    "on-secondary": "#f1faff",
+                    "on-tertiary-fixed": "#1e3254",
+                    "primary-dim": "#005b71",
+                    "surface": "#f8f9ff",
+                    "on-error": "#fff7f6",
+                    "surface-tint": "#006880",
+                    "on-secondary-fixed": "#2d424b",
+                    "surface-container": "#e6eeff",
+                    "secondary-container": "#cfe6f1",
+                    "secondary-dim": "#41565f",
+                    "tertiary": "#4c5f84",
+                    "inverse-primary": "#72d9fd",
+                    "secondary-fixed": "#cfe6f1",
+                    "tertiary-container": "#bbcffa",
+                    "tertiary-fixed-dim": "#adc1eb",
+                    "on-background": "#0f3458",
+                    "surface-variant": "#d3e4ff",
+                    "surface-container-highest": "#d3e4ff",
+                    "background": "#f8f9ff",
+                    "inverse-on-surface": "#8f9eb4",
+                    "on-primary-fixed-variant": "#005469",
+                    "secondary": "#4d626b",
+                    "on-error-container": "#6e0a12",
+                    "error-container": "#fa746f",
+                    "primary-fixed-dim": "#63cbee",
+                    "tertiary-fixed": "#bbcffa",
+                    "on-primary": "#f1faff",
+                    "secondary-fixed-dim": "#c1d8e2",
+                    "on-secondary-container": "#3f555e",
+                    "outline": "#5e7da5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 w-full z-50 bg-[#f8f9ff]/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-sm shadow-[#0f3458]/5 flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="professional male profile portrait in soft natural lighting against a neutral blue background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC_hk8RAR-jhqKRjPdHWxNADlGdtfzUrh1CmnBOTGNHyNrOxctPMV95tXkf9EVb0x7IFXvPuTVmwDuPNHrxrpyUd6FpR1PuuLHymCshslFTKCBqkgClmp1skhUWSsgj3GMi44HAKEbTYufhLa8Vyc6CSSuNh-nRPIQaE1XAQA8IZmn4KGlw2a3sjqXJ5JQSXMCuF5G5ri5rhR2hvMZAa739fXanzHeoOeqnlHPq_wzZ9lw4OJFiX-tgLAI4GCS6O6qBRs5FZtxGA"/>
+</div>
+<span class="text-xl font-black tracking-tighter text-[#006880] dark:text-[#72d9fd] font-headline">Randevu Sistemi</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-[#eff4ff] transition-colors text-[#426188]">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-4xl mx-auto">
+<!-- Progressive Header -->
+<div class="mb-10">
+<h1 class="font-headline font-extrabold text-4xl tracking-tight text-on-surface mb-2">Randevunuzu Planlayın</h1>
+<p class="font-label text-on-surface-variant text-lg">Size en uygun tarih ve saati seçin.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left Column: Calendar & Content -->
+<div class="lg:col-span-7 space-y-8">
+<!-- Custom Component: Progressive Calendar Scroller -->
+<section class="bg-surface-container-low rounded-xl p-6">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline font-bold text-xl text-on-surface">Eylül 2024</h3>
+<div class="flex gap-2">
+<button class="p-2 rounded-full hover:bg-surface-container-high text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-high text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex gap-3 overflow-x-auto hide-scrollbar pb-2">
+<!-- Date Cards -->
+<button class="date-btn flex-shrink-0 w-16 h-24 flex flex-col items-center justify-center rounded-xl bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high transition-all">
+<span class="text-xs font-semibold uppercase tracking-widest mb-1">Pzt</span>
+<span class="text-2xl font-bold font-headline">12</span>
+</button>
+<button class="date-btn flex-shrink-0 w-16 h-24 flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-[#006880] to-[#72d9fd] text-white shadow-lg shadow-primary/20 scale-105 transform">
+<span class="text-xs font-semibold uppercase tracking-widest mb-1">Sal</span>
+<span class="text-2xl font-bold font-headline">13</span>
+</button>
+<button class="date-btn flex-shrink-0 w-16 h-24 flex flex-col items-center justify-center rounded-xl bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high transition-all">
+<span class="text-xs font-semibold uppercase tracking-widest mb-1">Çar</span>
+<span class="text-2xl font-bold font-headline">14</span>
+</button>
+<button class="date-btn flex-shrink-0 w-16 h-24 flex flex-col items-center justify-center rounded-xl bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high transition-all">
+<span class="text-xs font-semibold uppercase tracking-widest mb-1">Per</span>
+<span class="text-2xl font-bold font-headline">15</span>
+</button>
+<button class="date-btn flex-shrink-0 w-16 h-24 flex flex-col items-center justify-center rounded-xl bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high transition-all">
+<span class="text-xs font-semibold uppercase tracking-widest mb-1">Cum</span>
+<span class="text-2xl font-bold font-headline">16</span>
+</button>
+<button class="date-btn flex-shrink-0 w-16 h-24 flex flex-col items-center justify-center rounded-xl bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high transition-all opacity-50 cursor-not-allowed">
+<span class="text-xs font-semibold uppercase tracking-widest mb-1">Cmt</span>
+<span class="text-2xl font-bold font-headline">17</span>
+</button>
+</div>
+</section>
+<!-- Time Selection Grid -->
+<section class="space-y-6">
+<!-- Morning -->
+<div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">light_mode</span>
+<h4 class="font-headline font-bold text-lg text-on-surface">Sabah</h4>
+</div>
+<div class="grid grid-cols-3 gap-3">
+<button class="time-btn py-3 px-4 rounded-full bg-surface-container-high text-on-surface font-medium hover:scale-[0.98] transition-transform text-center">09:00</button>
+<button class="time-btn py-3 px-4 rounded-full bg-primary text-on-primary font-medium scale-[0.98] shadow-md shadow-primary/10 text-center">09:30</button>
+<button class="time-btn py-3 px-4 rounded-full bg-surface-container-high text-on-surface font-medium hover:scale-[0.98] transition-transform text-center">10:30</button>
+</div>
+</div>
+<!-- Afternoon -->
+<div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">wb_sunny</span>
+<h4 class="font-headline font-bold text-lg text-on-surface">Öğleden Sonra</h4>
+</div>
+<div class="grid grid-cols-3 gap-3">
+<button class="time-btn py-3 px-4 rounded-full bg-surface-container-high text-on-surface font-medium hover:scale-[0.98] transition-transform text-center">13:00</button>
+<button class="time-btn py-3 px-4 rounded-full bg-surface-container-high text-on-surface font-medium hover:scale-[0.98] transition-transform text-center">14:30</button>
+<button class="py-3 px-4 rounded-full bg-surface-dim opacity-40 cursor-not-allowed text-on-surface-variant font-medium text-center">16:00</button>
+</div>
+</div>
+<!-- Evening -->
+<div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">dark_mode</span>
+<h4 class="font-headline font-bold text-lg text-on-surface">Akşam</h4>
+</div>
+<div class="grid grid-cols-3 gap-3">
+<button class="time-btn py-3 px-4 rounded-full bg-surface-container-high text-on-surface font-medium hover:scale-[0.98] transition-transform text-center">18:00</button>
+<button class="time-btn py-3 px-4 rounded-full bg-surface-container-high text-on-surface font-medium hover:scale-[0.98] transition-transform text-center">19:30</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Summary Card (Asymmetric Layout) -->
+<aside class="lg:col-span-5">
+<div class="sticky top-24">
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_12px_40px_rgba(15,52,88,0.06)] border border-outline-variant/15">
+<h3 class="font-headline font-extrabold text-2xl text-on-surface mb-6">Randevu Özeti</h3>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined">event_available</span>
+</div>
+<div>
+<p class="font-label text-sm text-on-surface-variant uppercase tracking-widest">Seçilen Tarih</p>
+<p class="font-headline font-bold text-lg text-on-surface">13 Eylül 2024, Salı</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<p class="font-label text-sm text-on-surface-variant uppercase tracking-widest">Zaman Dilimi</p>
+<p class="font-headline font-bold text-lg text-on-surface">09:30 — 10:30</p>
+</div>
+</div>
+<div class="pt-6 border-t border-outline-variant/10">
+<div class="flex justify-between items-center mb-8">
+<span class="text-on-surface-variant">Danışmanlık Ücreti</span>
+<span class="font-headline font-bold text-xl text-primary">{% if doktor %}{{ doktor.fiyat }}{% else %}85{% endif %} ₺</span>
+</div>
+<button class="w-full py-4 px-6 rounded-full bg-gradient-to-br from-[#006880] to-[#72d9fd] text-white font-headline font-bold text-lg shadow-lg shadow-primary/20 hover:scale-[0.98] active:scale-95 transition-all">
+                                    Seçimi Onayla
+                                </button>
+<p class="text-center mt-4 text-sm text-on-surface-variant">Onaylanana kadar ücret alınmaz</p>
+</div>
+</div>
+</div>
+<!-- Expert Detail Hint -->
+<div class="mt-6 flex items-center gap-4 p-4 rounded-xl bg-surface-container-low">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="professional expert smiling" src="{% if doktor %}{{ doktor.fotograf }}{% else %}https://lh3.googleusercontent.com/aida-public/AB6AXuBL1hsvgjxYfnOkwhLzTgJ9Y60x9SlzFMWiyW512FLbQhmounjatSKH3gHZU7qpHNQoKAhymgtTG92xfDWw-ZITwS18nGfK8g1kmjKwutPN724KAAEC05C9TYhYxIP3OuwRp_DKk1YYHEi9j4Fkqehs4aEcb57558lQHHURUr6253nV8M4zdLEtMoc6-8hOpSeqZn64BQntfDPKqsRN5QrlVOlDsysz3PaTA3JaaRDJR4OnxdtuzCGs2BE4aoc9hZJLonLa6cljFg{% endif %}"/>
+<div>
+<p class="text-xs text-on-surface-variant font-semibold uppercase tracking-wider">Uzman:</p>
+<p class="font-bold text-on-surface">{% if doktor %}{{ doktor.ad }}{% else %}Dr. Ayşe Yılmaz{% endif %}</p>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-[#f8f9ff]/80 dark:bg-slate-950/80 backdrop-blur-xl rounded-t-[1.5rem] shadow-[0_-12px_40px_rgba(15,52,88,0.06)] z-50 md:hidden">
+<a href="{{ url_for('index') }}" class="flex flex-col items-center justify-center text-[#426188] dark:text-slate-400 py-2 hover:text-[#006880] transition-colors">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-['Inter'] text-[11px] font-semibold uppercase tracking-wider mt-1">Keşfet</span>
+</a>
+<a href="{{ url_for('index') }}" class="flex flex-col items-center justify-center text-[#426188] dark:text-slate-400 py-2 hover:text-[#006880] transition-colors">
+<span class="material-symbols-outlined">person_search</span>
+<span class="font-['Inter'] text-[11px] font-semibold uppercase tracking-wider mt-1">Uzmanlar</span>
+</a>
+<a href="{{ url_for('zaman_secimi') }}" class="flex flex-col items-center justify-center bg-gradient-to-br from-[#006880] to-[#72d9fd] text-white rounded-full px-5 py-2">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-['Inter'] text-[11px] font-semibold uppercase tracking-wider mt-1">Takvim</span>
+</a>
+<a href="{{ url_for('randevularim') }}" class="flex flex-col items-center justify-center text-[#426188] dark:text-slate-400 py-2 hover:text-[#006880] transition-colors">
+<span class="material-symbols-outlined">event_note</span>
+<span class="font-['Inter'] text-[11px] font-semibold uppercase tracking-wider mt-1">Randevular</span>
+</a>
+</nav>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const dateButtons = document.querySelectorAll(".date-btn");
+        const timeButtons = document.querySelectorAll(".time-btn");
+        
+        dateButtons.forEach(btn => {
+            btn.addEventListener("click", function() {
+                if (this.classList.contains("cursor-not-allowed")) return;
+                dateButtons.forEach(b => {
+                    b.className = "date-btn flex-shrink-0 w-16 h-24 flex flex-col items-center justify-center rounded-xl bg-surface-container-lowest text-on-surface-variant hover:bg-surface-container-high transition-all" + (b.classList.contains("cursor-not-allowed") ? " opacity-50 cursor-not-allowed" : "");
+                });
+                this.className = "date-btn flex-shrink-0 w-16 h-24 flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-[#006880] to-[#72d9fd] text-white shadow-lg shadow-primary/20 scale-105 transform";
+            });
+        });
+
+        timeButtons.forEach(btn => {
+            btn.addEventListener("click", function() {
+                timeButtons.forEach(b => {
+                    b.className = "time-btn py-3 px-4 rounded-full bg-surface-container-high text-on-surface font-medium hover:scale-[0.98] transition-transform text-center";
+                });
+                this.className = "time-btn py-3 px-4 rounded-full bg-primary text-on-primary font-medium scale-[0.98] shadow-md shadow-primary/10 text-center";
+            });
+        });
+    });
+</script>
+</body></html>

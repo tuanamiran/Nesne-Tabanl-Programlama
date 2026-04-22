@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Randevularım - Randevu Sistemi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#324669",
+                    "primary": "#006880",
+                    "primary-container": "#72d9fd",
+                    "inverse-surface": "#010f20",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#72d9fd",
+                    "tertiary-dim": "#405377",
+                    "on-surface-variant": "#426188",
+                    "error-dim": "#67040d",
+                    "on-tertiary": "#f8f8ff",
+                    "surface-container-high": "#dce9ff",
+                    "on-primary-container": "#004a5d",
+                    "on-secondary-fixed-variant": "#495f68",
+                    "error": "#a83836",
+                    "surface-container-low": "#eff4ff",
+                    "outline-variant": "#95b4e0",
+                    "surface-bright": "#f8f9ff",
+                    "on-primary-fixed": "#003543",
+                    "on-surface": "#0f3458",
+                    "on-tertiary-fixed-variant": "#3b4f73",
+                    "surface-dim": "#c4dcff",
+                    "on-secondary": "#f1faff",
+                    "on-tertiary-fixed": "#1e3254",
+                    "primary-dim": "#005b71",
+                    "surface": "#f8f9ff",
+                    "on-error": "#fff7f6",
+                    "surface-tint": "#006880",
+                    "on-secondary-fixed": "#2d424b",
+                    "surface-container": "#e6eeff",
+                    "secondary-container": "#cfe6f1",
+                    "secondary-dim": "#41565f",
+                    "tertiary": "#4c5f84",
+                    "inverse-primary": "#72d9fd",
+                    "secondary-fixed": "#cfe6f1",
+                    "tertiary-container": "#bbcffa",
+                    "tertiary-fixed-dim": "#adc1eb",
+                    "on-background": "#0f3458",
+                    "surface-variant": "#d3e4ff",
+                    "surface-container-highest": "#d3e4ff",
+                    "background": "#f8f9ff",
+                    "inverse-on-surface": "#8f9eb4",
+                    "on-primary-fixed-variant": "#005469",
+                    "secondary": "#4d626b",
+                    "on-error-container": "#6e0a12",
+                    "error-container": "#fa746f",
+                    "primary-fixed-dim": "#63cbee",
+                    "tertiary-fixed": "#bbcffa",
+                    "on-primary": "#f1faff",
+                    "secondary-fixed-dim": "#c1d8e2",
+                    "on-secondary-container": "#3f555e",
+                    "outline": "#5e7da5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f8f9ff]/80 backdrop-blur-xl shadow-sm shadow-[#0f3458]/5 flex justify-between items-center px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="Profile" class="w-10 h-10 rounded-full object-cover" data-alt="professional headshot of a middle-aged man with a friendly smile, clean studio lighting, soft blue background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1IdjjxOvJ-6xtaV0EIasARuESzV4JMtioRJBicHpOtFcxRgygIkzNqFS6ZP_FE0NzhVImefT33RFNSgpNwtH0v1T1CfAm_E5mJzidlYnRXIwBLojwDsd6PtUJMvnoCSflLGvA3uNIZA1e1w_uVYHF0df_i_amjt3UfbvfAZV1k-7dT4xiLvJBWwcxUrz48KsJHiswzAlCL0ISQoQPIKXf1VDTVc3jY8iAcg0jMuqpQvxKItbfi0SAcO22uplt3vkdWO3w0l3FUw"/>
+<span class="text-xl font-black tracking-tighter text-[#006880]">Randevu Sistemi</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#eff4ff] transition-colors text-[#006880]">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="mt-24 px-6 max-w-4xl mx-auto">
+<!-- Editorial Header -->
+<section class="mb-8">
+<h1 class="text-4xl font-extrabold tracking-tight text-on-surface mb-2">Randevularım</h1>
+<p class="text-on-surface-variant font-medium">Uzmanlarımızla olan gelecek ve geçmiş randevularınızı yönetin.</p>
+</section>
+<!-- Tabs -->
+<nav class="flex gap-2 p-1 bg-surface-container-low rounded-full mb-8 w-fit">
+<button class="px-8 py-2.5 rounded-full bg-white text-primary font-bold shadow-sm transition-all text-sm">
+                Yaklaşan
+            </button>
+<button class="px-8 py-2.5 rounded-full text-on-surface-variant font-semibold hover:text-primary transition-all text-sm">
+                Geçmiş
+            </button>
+</nav>
+<!-- Appointments List -->
+<div class="flex flex-col gap-6">
+<!-- Appointment Card 1 -->
+<article class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_-12px_40px_rgba(15,52,88,0.06)] relative overflow-hidden group">
+<div class="flex flex-col md:flex-row gap-6">
+<div class="relative">
+<img alt="Expert" class="w-20 h-20 md:w-24 md:h-24 rounded-xl object-cover" data-alt="portrait of a confident female medical professional in clinical setting, soft natural light, professional attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGrHAjNZN3XmcGt4G_Co4pZ8sDYyUMruF9TuznAWRyYAkniNATiDoUgG4zrmfmxJCG6MAkIm7ncfvPxYyhwUx0pSC4JQYCDuQha0hwTvCOjhnmZ560CKkU3TtNVpfjVDi3NOMvcq_MnTe5UGkJXfcFqgqJZ8IcyUxRF1aEjF2gOHCG9Q46V56fggfunHQiwhPGbuEQgfdG2Dv11ZD2JTz-io-w9AIoErXhj44YMIdI2a_4EiiCBKHI487Q1k0ikNVSaiGnEi76JQ"/>
+<div class="absolute -bottom-2 -right-2 bg-primary text-white text-[10px] px-2 py-1 rounded-full font-bold uppercase tracking-widest shadow-lg">Onaylandı</div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-xl font-bold text-on-surface tracking-tight">Dr. Ahmet Yılmaz</h3>
+<span class="text-primary font-bold text-sm bg-primary-container/20 px-3 py-1 rounded-full">120.00 ₺</span>
+</div>
+<p class="text-on-surface-variant font-medium mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="medical_services">medical_services</span>
+                            Kapsamlı Sağlık Danışmanlığı
+                        </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-surface-container-low p-4 rounded-xl">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Tarih</p>
+<p class="font-semibold text-on-surface">24 Ekim 2023</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Saat</p>
+<p class="font-semibold text-on-surface">09:30</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-outline-variant/15 flex flex-wrap gap-3">
+<button class="px-6 py-2.5 rounded-full bg-gradient-to-br from-primary to-primary-container text-white font-bold text-sm shadow-md active:scale-95 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="edit_calendar">edit_calendar</span>
+                        Yeniden Planla
+                    </button>
+<button class="px-6 py-2.5 rounded-full bg-secondary-container text-on-secondary-container font-bold text-sm active:scale-95 transition-all">
+                        Randevuyu İptal Et
+                    </button>
+</div>
+</article>
+<!-- Appointment Card 2 (Pending) -->
+<article class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_-12px_40px_rgba(15,52,88,0.06)]">
+<div class="flex flex-col md:flex-row gap-6">
+<div class="relative">
+<img alt="Expert" class="w-20 h-20 md:w-24 md:h-24 rounded-xl object-cover" data-alt="close up of a professional woman looking thoughtfully at a screen, modern office environment with soft bokeh" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFu7bF_b2ttka4fUz5xR536jMQD6StVqvtaAL3uOyyG7jUurGlHhw4Bb3FCMj11Ff4Es9fwbXuKrKZ-4yRq5onsBSpFZmui0Zc2KNYoD_x5Ywv0i3_aijvuxi_lb7XbCalynkvlF1HBa88D3TdXDAe-oUKlvRdcdtRsEA7Hhpbpo__2Y8B40pbCdAcIMlKWkj9IxU9MDYosspERhQfxTtcWHZYvaUGQA35XrXhE5SL0t3YbzLmu3JoRPByMFHtt8bS2P1NisfUrw"/>
+<div class="absolute -bottom-2 -right-2 bg-on-surface-variant text-white text-[10px] px-2 py-1 rounded-full font-bold uppercase tracking-widest shadow-lg">Beklemede</div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-xl font-bold text-on-surface tracking-tight">Ayşe Demir</h3>
+<span class="text-primary font-bold text-sm bg-primary-container/20 px-3 py-1 rounded-full">85.00 ₺</span>
+</div>
+<p class="text-on-surface-variant font-medium mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="psychology">psychology</span>
+                            Stratejik Yaşam Koçluğu
+                        </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-surface-container-low p-4 rounded-xl">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Tarih</p>
+<p class="font-semibold text-on-surface">28 Ekim 2023</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Saat</p>
+<p class="font-semibold text-on-surface">14:00</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-outline-variant/15 flex flex-wrap gap-3">
+<button class="px-6 py-2.5 rounded-full bg-gradient-to-br from-primary to-primary-container text-white font-bold text-sm shadow-md active:scale-95 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="edit_calendar">edit_calendar</span>
+                        Yeniden Planla
+                    </button>
+<button class="px-6 py-2.5 rounded-full bg-secondary-container text-on-secondary-container font-bold text-sm active:scale-95 transition-all">
+                        Randevuyu İptal Et
+                    </button>
+</div>
+</article>
+<!-- Info Alert -->
+<div class="bg-tertiary-container/30 rounded-xl p-4 flex items-start gap-4">
+<span class="material-symbols-outlined text-tertiary mt-1" data-icon="info">info</span>
+<p class="text-sm text-on-tertiary-container leading-relaxed">
+                    Bir şeyi değiştirmeniz mi gerekiyor? Randevularınızı planlanan saatten 24 saat öncesine kadar ek ücret ödemeden yeniden planlayabilirsiniz.
+                </p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-[#f8f9ff]/80 backdrop-blur-xl shadow-[0_-12px_40px_rgba(15,52,88,0.06)] rounded-t-[1.5rem] z-50">
+<a class="flex flex-col items-center justify-center text-[#426188] py-2 hover:text-[#006880] transition-colors" href="{{ url_for('index') }}">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-['Inter'] text-[11px] font-semibold uppercase tracking-wider mt-1">Keşfet</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#426188] py-2 hover:text-[#006880] transition-colors" href="{{ url_for('index') }}">
+<span class="material-symbols-outlined" data-icon="person_search">person_search</span>
+<span class="font-['Inter'] text-[11px] font-semibold uppercase tracking-wider mt-1">Uzmanlar</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#426188] py-2 hover:text-[#006880] transition-colors" href="{{ url_for('zaman_secimi') }}">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-['Inter'] text-[11px] font-semibold uppercase tracking-wider mt-1">Takvim</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-gradient-to-br from-[#006880] to-[#72d9fd] text-white rounded-full px-5 py-2 shadow-lg scale-100 active:scale-90 transition-all" href="{{ url_for('randevularim') }}">
+<span class="material-symbols-outlined" data-icon="event_note">event_note</span>
+<span class="font-['Inter'] text-[11px] font-semibold uppercase tracking-wider mt-1">Randevular</span>
+</a>
+</nav>
+</body></html>
