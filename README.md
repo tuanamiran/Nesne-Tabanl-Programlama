@@ -1,51 +1,23 @@
-# Nesne-Tabanl-Programlama
+# 🚀 Nesne-tabanl-dersi-sunum
 
-# Kütüphane Yönetim Sistemi (Library Management System)
-Bu proje, Nesne Tabanlı Programlama (OOP) prensipleri kullanılarak geliştirilmiş bir kütüphane yönetim uygulamasıdır. Proje kapsamında kitap ekleme, listeleme, silme ve kullanıcı yönetimi gibi temel işlevler gerçekleştirilmektedir.
+Bu depo, Python kullanarak Nesne Yönelimli Programlama (OOP) temellerini, hata yakalama (try-except) mekanizmalarını ve algoritmik düşünceyi geliştirmek amacıyla hazırlanmış iki farklı terminal (CLI) uygulamasını içermektedir.
 
-🛠 Kullanılan Teknolojiler
-Dil: Python
+## 📂 Projeler
 
-Arayüz: Flask / Django (HTML şablonlarından anlaşıldığı üzere)
+### 1. 🌍 Seyahat Planlama Asistanı
+Kullanıcıların seyahat rotalarını, konaklama ve ulaşım maliyetlerini hesaplayan, içerisine aktiviteler eklenebilen dinamik bir seyahat otomasyonu.
+* **Kullanılan Yapılar:** Sınıflar (Classes), Nesne Kompozisyonu (Object Composition), Döngüler, Hata Yakalama (Try-Except).
+* **Öne Çıkan Özellik:** Otomatik geceleme sayısı ve toplam tahmini bütçe hesaplaması.
 
-Veritabanı: SQLite / MySQL (Hangisini kullandıysan ekle)
+### 2. 🎉 Etkinlik & Gişe Kayıt Sistemi
+Konser, kamp gibi etkinlikler için bilet satışını yöneten interaktif bir gişe sistemi.
+* **Kullanılan Yapılar:** Kalıtım (Inheritance - VIP Bilet), Kapsülleme mantığı, İş Kuralları (Business Logic).
+* **Öne Çıkan Özellik:** Yaş sınırı kontrolü, otomatik kapasite takibi ve minimum katılımcı barajı sağlanamazsa otomatik iade (refund) sistemi.
 
-Konseptler: Classlar, Kalıtım (Inheritance), Kapsülleme (Encapsulation)
+## 🛠️ Kurulum ve Kullanım
 
-✨ Temel Özellikler
-Kitap Yönetimi: Yeni kitap ekleme, detay görüntüleme ve silme.
+Projeleri bilgisayarınızda çalıştırmak için sisteminizde Python yüklü olması yeterlidir. Herhangi bir harici kütüphane gerektirmez.
 
-Kullanıcı Sistemi: Kişisel kitaplığım sayfası ve kullanıcı etkileşimi.
-
-Dinamik Web Arayüzü: HTML şablonları (Templates) ile kullanıcı dostu tasarım.
-
-
-# Hastane Randevu Sistemi (Hospital Appointment System)
-Bu uygulama, hastaların polikliniklere ve doktorlara randevu almasını sağlayan, Nesne Tabanlı Programlama (OOP) mimarisi üzerine inşa edilmiş bir yönetim sistemidir.
-
-🛠 Kullanılan Teknolojiler
-Dil: Python
-
-Web Çatısı: Flask / Django
-
-Veritabanı: SQLite / PostgreSQL
-
-Mimari: Model-View-Template (MVT)
-
-🧩 OOP Yaklaşımı ve Sınıf Yapısı
-Projede OOP prensiplerini uygulamak adına aşağıdaki temel sınıflar ve ilişkiler kullanılmıştır:
-
-Kullanıcı (User) Sınıfı: Ortak özellikleri (Ad, Soyad, TC No) içeren temel sınıf (Base Class).
-
-Hasta & Doktor Sınıfları: Kullanıcı sınıfından türetilen (Inheritance) alt sınıflar.
-
-Randevu Sınıfı: Tarih, saat ve doktor-hasta eşleşmelerini yöneten sınıf.
-
-✨ Temel Özellikler
-Randevu Alma: Hastaların uygun tarih ve saate randevu oluşturabilmesi.
-
-Doktor Paneli: Doktorların kendi randevu programlarını görüntüleyebilmesi.
-
-Poliklinik Yönetimi: Branşlara göre doktor filtreleme ve listeleme.
-
-Validasyon: Aynı saat dilimine mükerrer randevu alınmasını engelleyen kontrol mekanizması. 
+1. Projeyi bilgisayarınıza indirin:
+   ```bash
+   git clone [https://github.com/FallenOne16/Nesne-tabanl-dersi-sunum.git](https://github.com/FallenOne16/Nesne-tabanl-dersi-sunum.git)
